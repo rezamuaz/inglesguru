@@ -1,0 +1,36 @@
+{
+    "chapter_id": "000001",
+    "title": "Travelling to Singapore",
+    "lessons": [
+        {
+            "title": "Airplane",
+            "img_portait": "https://ik.imagekit.io/webart/sysbit/Chapter1/portait/airplane%20finish1_m86JZC-UW.webp?updatedAt=1722311121949",
+            "img_lanscape": "https://ik.imagekit.io/webart/sysbit/Chapter1/lanscape/airplane%20finish%201(1)_dctiZxocs.png?updatedAt=1722246487028",
+            "status": "completed"
+        },
+        {
+            "title": "Immigration",
+            "img_portait": "https://ik.imagekit.io/webart/sysbit/Chapter1/portait/airport%20done%20colored_aBhSLHY4g.webp?updatedAt=1722311122374",
+            "img_lanscape": "https://ik.imagekit.io/webart/sysbit/Chapter1/lanscape/airport%20done%20colored%201(2)(1)_HXv9dmq8e.png?updatedAt=1722246486740",
+            "status": "completed"
+        },
+        {
+            "title": "Taxi",
+            "img_portait": "https://ik.imagekit.io/webart/sysbit/Chapter1/portait/taxi%20(1)_rk5qF7XR6.webp?updatedAt=1722311121718",
+            "img_lanscape": "https://ik.imagekit.io/webart/sysbit/Chapter1/lanscape/taxi%20(1)%201(1)__p7vWwQZd.png?updatedAt=1722246486048",
+            "status": "start"
+        },
+        {
+            "title": "Hotel",
+            "img_portait": "https://ik.imagekit.io/webart/sysbit/Chapter1/portait/hotel_rj9QPyaPb.webp?updatedAt=1722311122161",
+            "img_lanscape": "https://ik.imagekit.io/webart/sysbit/Chapter1/lanscape/sentosa(1)_2ZBY5_IR-.png?updatedAt=1722246486574",
+            "status": "locked"
+        },
+        {
+            "title": "Restaurant",
+            "img_portait": "https://ik.imagekit.io/webart/sysbit/Chapter1/portait/restaurant%20start%20screen_5RRSRdFMD.webp?updatedAt=1722311122280",
+            "img_lanscape": "https://ik.imagekit.io/webart/sysbit/Chapter1/lanscape/restaurant%20start%20screen%201(1)_c9YXNQk7c.png?updatedAt=1722246487210",
+            "status": "locked"
+        }
+    ]
+}

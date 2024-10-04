@@ -1,0 +1,195 @@
+{
+    "id": "s000001",
+    "title": "Airport",
+    "video": "https://ik.imagekit.io/webart/sysbit/Airport/airport2(1)_eJFxbLIGB.mp4?updatedAt=1721188528265",
+    "pages": [
+        {
+            "page": 1,
+            "steps": [
+                {
+                    "step": 1,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/6n_rqvZ7wte9.png?updatedAt=1721023245186",
+                    "voice": "https://ik.imagekit.io/webart/sysbit/Airport/voice/1%20-%20A_G47eil2P9y.mp3?updatedAt=1721895840987",
+                    "en": "Welcome to Singapore",
+                    "id": "Selamat Datang di Singapura"
+                },
+                {
+                    "step": 2,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/1_3MExZ9Rq5.png?updatedAt=1721023242062",
+                    "voice":"https://ik.imagekit.io/webart/sysbit/Airport/voice/1%20-%20B_MgROmcWnc.mp3?updatedAt=1721895841025",
+                    "en": "Thank you",
+                    "id": "Terima Kasih"
+                }
+            ]
+        },
+        {
+            "page": 2,
+            "steps": [
+                {
+                    "step": 3,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/4_a9fMDsmQX.png?updatedAt=1721023242201",
+                    "voice":"https://ik.imagekit.io/webart/sysbit/Airport/voice/2%20-%20A_BYCdG1fQX.mp3?updatedAt=1721895841643",
+                    "en": "Are you traveling alone?",
+                    "id": "Apakah Anda bepergian sendiri?"
+                },
+                {
+                    "step": 4,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/2-1_wHEhHQ9x4M.png?updatedAt=1721023242397",
+                    "voice":"https://ik.imagekit.io/webart/sysbit/Airport/voice/2%20-%20B_0BcqmzSpdg.mp3?updatedAt=1721895841139",
+                    "en": "No, I am with my wife, son and daughter",
+                    "id": "Tidak, saya bersama istri, ibu dan ayah"
+                }
+            ]
+        },
+        {
+            "page": 3,
+            "steps": [
+                {
+                    "step": 5,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/3%20copy_wZWsT81B5.png?updatedAt=1721023242451",
+                    "voice": "https://ik.imagekit.io/webart/sysbit/Airport/voice/3%20-%20A_A4cdCIy-pQ.mp3?updatedAt=1721895841240",
+                    "en": "Do you have a return ticket?",
+                    "id": "Apakah Anda memiliki tiket kembali?"
+                },
+                {
+                    "step": 6,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/5-1_WcjK-ruNv.png?updatedAt=1721023245497",
+                    "voice": "https://ik.imagekit.io/webart/sysbit/Airport/voice/3%20-%20B_XclYJ5Jf86.mp3?updatedAt=1721895841126",
+                    "en": "Yes I have a return ticket",
+                    "id": "Ya, saya memiliki tiket pesawat pulang pergi"
+                }
+            ]
+        },
+        {
+            "page": 4,
+            "steps": [
+                {
+                    "step": 7,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/5_BovzShx4w.png?updatedAt=1721023242335",
+                    "voice": "https://ik.imagekit.io/webart/sysbit/Airport/voice/4%20-%20A_R6fvgpLC1.mp3?updatedAt=1721895841044",
+                    "en": "How long will you be staying In Singapore?",
+                    "id": "Berapa lama Anda akan tinggal di Singapura?"
+                },
+                {
+                    "step": 8,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/4-1_oXknlbPWYW.png?updatedAt=1721023242459",
+                    "voice": "https://ik.imagekit.io/webart/sysbit/Airport/voice/4%20-%20B_JfWttrKOk.mp3?updatedAt=1721895840892",
+                    "en": "5 days",
+                    "id": "lima hari"
+                }
+            ]
+        },
+        {
+            "page": 5,
+            "steps": [
+                {
+                    "step": 9,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/2%20copy%201_1w-s7359Q3.png?updatedAt=1721023242211",
+                    "voice": "https://ik.imagekit.io/webart/sysbit/Airport/voice/5%20-%20A_atidZQq4l.mp3?updatedAt=1721895840938",
+                    "en": "What is the purpose of your visit to Singapore?",
+                    "id": "Apa tujuan kunjungan Anda ke Singapura?"
+                },
+                {
+                    "step": 10,
+                    "img": "https://ik.imagekit.io/webart/sysbit/Airport/3-1_0J0EgNGGZ.png?updatedAt=1721023242271",
+                    "voice":"https://ik.imagekit.io/webart/sysbit/Airport/voice/5%20-%20B_UtjlkQLBl.mp3?updatedAt=1721895841210",
+                    "en": "Sightseeing and shopping",
+                    "id": "Tamasya dan berbelanja"
+                }
+            ]
+        }
+    ],
+    "vocabulary": [
+        {
+            "page": 1,
+            "en": [
+                {
+                    "num": 0,
+                    "word": "Thank You"
+                }
+            ]
+        },
+        {
+            "page": 2,
+            "en": [
+                {
+                    "num": 0,
+                    "word": "No"
+                },
+                {
+                    "num": 1,
+                    "word": "I am"
+                },
+                {
+                    "num": 2,
+                    "word": "with"
+                },
+                {
+                    "num": 3,
+                    "word": "My wife"
+                },
+                {
+                    "num": 4,
+                    "word": "Son"
+                },
+                {
+                    "num": 5,
+                    "word": "And"
+                },
+                {
+                    "num": 6,
+                    "word": "Daughter"
+                }
+            ]
+        },
+        {
+            "page": 3,
+            "en": [
+                {
+                    "num": 0,
+                    "word": "Yes"
+                },
+                {
+                    "num": 1,
+                    "word": "I have"
+                },
+                {
+                    "num": 2,
+                    "word": "a return air ticket"
+                }
+            ]
+        },
+        {
+            "page": 4,
+            "en": [
+                {
+                    "num": 0,
+                    "word": "Five days"
+                },
+                {
+                    "num": 1,
+                    "word": "days"
+                }
+                
+            ]
+        },
+        {
+            "page": 5,
+            "en": [
+                {
+                    "num": 0,
+                    "word": "Sightseeing"
+                },
+                {
+                    "num": 1,
+                    "word": "And"
+                },
+                {
+                    "num": 2,
+                    "word": "Shopping"
+                }
+               
+            ]
+        }
+    ]
+}

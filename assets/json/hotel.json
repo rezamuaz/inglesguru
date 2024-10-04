@@ -1,0 +1,93 @@
+{
+    "id": "s000004",
+    "title": "Hotel",
+    "video": "",
+    "pages": [
+        {
+            "page": 1,
+            "steps": [
+                {
+                    "step": 1,
+                    "img": "Guest.png",
+                    "en": "Good Morning.. I’ve booked a room through ticket.com",
+                    "id": "Selamat pagi.. Saya sudah booking lewat ticket.com"
+                },
+                {
+                    "step": 2,
+                    "img": "Hotel.png",
+                    "en": "Good Morning. May I see your ID please?",
+                    "id": "Selamat pagi. Bisa lihat KTP-nya?"
+                },
+                {
+                    "page": 2,
+                    "step": [
+                        {
+                            "step": 3,
+                            "img": "Guest.png",
+                            "en": "Here it is",
+                            "id": "Ini"
+                        },
+                        {
+                            "step": 4,
+                            "img": "Hotel.png",
+                            "en": "Yes, we’ve your reservation Mr.Budi, one twin room, staying for two nights. It is all paid up",
+                            "id": "Ya, kami ada reservasi atas Mr.Budi, Kamar twin, dua malam. Sudah dibayar semua"
+                        }
+                    ]
+                },
+                {
+                    "page": 3,
+                    "step": [
+                        {
+                            "step": 5,
+                            "img": "Guest.png",
+                            "en": "Yes, you are right.",
+                            "id": "Ya benar"
+                        },
+                        {
+                            "step": 6,
+                            "img": "Hotel.png",
+                            "en": "Please sign your name here",
+                            "id": "Mohon Tanda tangan di sini"
+                        }
+                    ]
+                },
+                {
+                    "page": 4,
+                    "step": [
+                        {
+                            "step": 7,
+                            "img": "Guest.png",
+                            "en": "Sure. Can someone help me with my luggage?",
+                            "id": "Baiklah. Bisakah seseorang membantu saya membawa koper ini?"
+                        },
+                        {
+                            "step": 8,
+                            "img": "Hotel.png",
+                            "en": "Of course, The bellboy will help bring your belongings.",
+                            "id": "Tentu saja. Nanti bellboy akan membawakan barang-barang Anda."
+                        }
+                    ]
+                },
+                {
+                    "page": 5,
+                    "step": [
+                        {
+                            "step": 9,
+                            "img": "Guest.png",
+                            "en": "Thank you.",
+                            "id": "Terima Kasih"
+                        },
+                        {
+                            "step": 10,
+                            "img": "Hotel.png",
+                            "en": "You’re welcome. Your room is ready. And here is your key. Enjoy",
+                            "id": "Sama-sama. Kamar anda sudah siap, dan ini kuncinya. Selamat menikmati"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "vocabulary": []
+}

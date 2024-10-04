@@ -1,0 +1,163 @@
+{
+    "id": "s000003",
+    "title": "Taxi",
+    "video": "",
+    "pages": [
+        {
+            "page": 1,
+            "steps": [
+                {
+                    "step": 1,
+                    "img": "Taxi driver.png",
+                    "en": "Good afternoon, Where are we heading?",
+                    "id": "Selamat Siang, Ke mana tujuan kita?"
+                },
+                {
+                    "step": 2,
+                    "img": "Passenger.png",
+                    "en": "Good afternoon, to Universal Studio Singapore, Please ",
+                    "id": "Selamat Siang, ke universal studio singapura , ya."
+                },
+                {
+                    "page": 2,
+                    "step": [
+                        {
+                            "step": 3,
+                            "img": "Taxi driver.png",
+                            "en": "Oke. Don’t forget to fasten your seatbelt, please",
+                            "id": "Baik. Jangan lupa untuk mengenakan sabuk pengaman ya"
+                        },
+                        {
+                            "step": 4,
+                            "img": "Passenger.png",
+                            "en": "Oke",
+                            "id": "Baik"
+                        }
+                    ]
+                },
+                {
+                    "page": 3,
+                    "step": [
+                        {
+                            "step": 5,
+                            "img": "Taxi driver.png",
+                            "en": "May I ask where you are from?",
+                            "id": "Dari mana Anda berasal?"
+                        },
+                        {
+                            "step": 6,
+                            "img": "Passenger.png",
+                            "en": "I’m from Indonesia",
+                            "id": "Saya berasal dari Indonesia"
+                        }
+                    ]
+                },
+                {
+                    "page": 4,
+                    "step": [
+                        {
+                            "step": 7,
+                            "img": "Taxi driver.png",
+                            "en": "Is this your first time in Singapore?",
+                            "id": "Apakah ini pertama kalinya Anda ke Singapura"
+                        },
+                        {
+                            "step": 8,
+                            "img": "Passenger.png",
+                            "en": "No, I’ve been here like, three times.?",
+                            "id": "tidak, Saya sudah pernah ke sini sekitar tiga kali"
+                        }
+                    ]
+                },
+                {
+                    "page": 5,
+                    "step": [
+                        {
+                            "step": 9,
+                            "img": "Taxi driver.png",
+                            "en": "Are you staying long?",
+                            "id": "Apakah kau akan lama di sini?"
+                        },
+                        {
+                            "step": 10,
+                            "img": "Passenger.png",
+                            "en": "No, only for a week this time.",
+                            "id": "Tidak, hanya seminggu saja kali ini."
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "vocabulary": [
+        {
+            "page": 1,
+            "en": [
+                "I",
+                "would like",
+                "to go",
+                "to hotel"
+            ]
+        },
+        {
+            "page": 2,
+            "en": [
+                "Yes",
+                "Please"
+            ]
+        },
+        {
+            "page": 3,
+            "en": [
+                "Yes",
+                "We",
+                "will",
+                "fasten",
+                "our seatbelt"
+            ]
+        },
+        {
+            "page": 4,
+            "en": [
+                "No",
+                "I am",
+                "not",
+                "in a hurry"
+            ]
+        },
+        {
+            "page": 5,
+            "en": [
+                "We are",
+                "from",
+                "Indonesia"
+            ]
+        },
+        {
+            "page": 6,
+            "en": [
+                "Yes,",
+                "this is",
+                "my first time",
+                "in singapore"
+            ]
+        },
+        {
+            "page": 7,
+            "en": [
+                "No",
+                "only",
+                "for",
+                "five days"
+            ]
+        },
+        {
+            "page": 8,
+            "en": [
+                "thank you",
+                "nice",
+                "to know"
+            ]
+        }
+    ]
+}

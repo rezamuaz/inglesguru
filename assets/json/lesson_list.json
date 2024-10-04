@@ -1,0 +1,30 @@
+{
+    "progress":5,
+    "lessons": [
+        {
+            "nbr": "001",
+            "title": "airplane",
+            "cover": "https://t5w5.c20.e2-7.dev/sys/lesson/lesson1-66c31ee61a752.webp"
+        },
+        {
+            "nbr":"002",
+            "title": "immigration",
+            "cover": "https://t5w5.c20.e2-7.dev/sys/lesson/lesson2-66c31ee51bb4d.webp"
+        },
+        {
+            "nbr": "003",
+            "title": "taxi",
+            "cover": "https://t5w5.c20.e2-7.dev/sys/lesson/lesson3-66c31ee55f20e.webp"
+        },
+        {
+            "nbr": "004",
+            "title": "hotel",
+            "cover": "https://t5w5.c20.e2-7.dev/sys/lesson/lesson4-66c31ee5f0086.webp"
+        },
+        {
+            "nbr": "005",
+            "title": "restaurant",
+            "cover": "https://t5w5.c20.e2-7.dev/sys/lesson/lesson5-66c31ee69c1c1.webp"
+        }
+    ]
+}

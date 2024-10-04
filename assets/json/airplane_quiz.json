@@ -1,0 +1,78 @@
+{
+    "quizes": [
+      {
+        "nbr": 1,
+        "context": "<p>Inilah nama-nama kota di Asia.</p><ol><li>Jakarta</li><li>Kuala Lumpur</li><li>Bangkok</li><li>Manila</li></ol>",
+        "question": "<strong>Apakah jenis dari kata benda diatas?</strong>",
+        "selections": [
+          {
+            "choice": "1",
+            "description": "<strong>Common nouns</strong> (Kata benda umum)"
+          },
+          {
+            "choice": "2",
+            "description": "<strong>Proper Nouns</strong> (Kata benda yang tepat)"
+          },
+          {
+            "choice": "3",
+            "description": "<strong>Abstract Nouns</strong> (Kata Benda Abstrak)"
+          },
+          {
+            "choice": "4",
+            "description": "<strong>Not Nouns</strong> (Bukan Kata Benda)"
+          }
+        ],
+        "answer": "2",
+        "reason": "Kata benda yang tepat. Adalah nama orang, benda, atau hewan tertentu.\nUntuk kata benda tepat, huruf pertama harus selalu kapital.\n"
+      },
+      {
+        "nbr": 2,
+        "context": "<p>Inilah nama-nama binatang.</p><ul><li>dog (anjing)</li><li>cat (kucing)</li><li>chicken (ayam)</li><li>cow (sapi)</li></ul>",
+        "question": "<strong>Apa jenis kata benda itu?</strong>",
+        "selections": [
+          {
+            "choice": "1",
+            "description": "<strong>Common nouns</strong>  (Kata benda umum)"
+          },
+          {
+            "choice": "2",
+            "description": "<strong>Proper Nouns</strong> (Kata benda yang tepat)"
+          },
+          {
+            "choice": "3",
+            "description": "<strong>Abstract Nouns</strong> (Kata Benda Abstrak)"
+          },
+          {
+            "choice": "4",
+            "description": "<strong>Not Nouns</strong> (Bukan Kata Benda)"
+          }
+        ],
+        "answer": "1",
+        "reason": "Kata benda umum. Adalah nama orang, tempat, atau benda secara umum. \n"
+      },
+      {
+        "nbr": 3,
+        "context": "<p>Inilah berbagai ras orang di Asia.</p><ul><li>Indian</li><li>Chinese</li><li>Malay</li><li>Eurasian</li></ul>",
+        "question": "<strong>Apa jenis kata benda itu?</strong>",
+        "selections": [
+          {
+            "choice": "1",
+            "description": "<strong>Common nouns</strong>  (Kata benda umum)"
+          },
+          {
+            "choice": "2",
+            "description": "<strong>Proper Nouns</strong> (Kata benda yang tepat)"
+          },
+          {
+            "choice": "3",
+            "description": "<strong>Abstract Nouns</strong> (Kata Benda Abstrak)"
+          },
+          {
+            "choice": "4",
+            "description": "<strong>Not Nouns</strong> (Bukan Kata Benda)"
+          }
+        ],
+        "answer": "2",
+        "reason": "Kata benda yang tepat. Adalah nama orang, benda, atau hewan tertentu.\nUntuk kata benda tepat, huruf pertama harus selalu kapital.\n"
+      }
+    ]}

@@ -1,0 +1,161 @@
+{
+    "Status": "OK",
+    "LessonData": {
+        "intro_video":"https://t5w5.c20.e2-7.dev/sys/lesson/1/vid/intro01.mp4",
+        "grammar_video":"https://t5w5.c20.e2-7.dev/sys/lesson/1/vid/grammar01.mp4",
+        "pages": [
+            {
+                "page": 1,
+                "steps": [
+                    {
+                        "step": 1,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0101.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0101.ogg",
+                        "en": "Good morning, What would you like to drink?",
+                        "id": "Selamat pagi, Anda ingin minum apa?"
+                    },
+                    {
+                        "step": 2,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0102.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0102.ogg",
+                        "en": "I like to drink hot coffee.",
+                        "id": "Saya suka minum kopi panas."
+                    }
+                ]
+            },
+            {
+                "page": 2,
+                "steps": [
+                    {
+                        "step": 3,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0103.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0103.ogg",
+                        "en": "Would you like some biscuits or a cake to go along with your coffee ?",
+                        "id": "Apakah Anda ingin biskuit atau kue untuk menemani kopi Anda?"
+                    },
+                    {
+                        "step": 4,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0104.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0104.ogg",
+                        "en": "Can I have the cake please.",
+                        "id": "Bolehkah saya minta kuenya."
+                    }
+                ]
+            },
+            {
+                "page": 3,
+                "steps": [
+                    {
+                        "step": 5,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0105.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0105.ogg",
+                        "en": "Is there anything else you would like ?",
+                        "id": "Apakah ada hal lain yang Anda inginkan?"
+                    },
+                    {
+                        "step": 6,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0106.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0106.ogg",
+                        "en": "A cup with an ice cube will be nice.",
+                        "id": "Secangkir dengan es batu akan menyenangkan."
+                    }
+                ]
+            },
+            {
+                "page": 4,
+                "steps": [
+                    {
+                        "step": 7,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0107.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0107.ogg",
+                        "en": "Certainly. Here you go.",
+                        "id": "Tentu. Ini dia."
+                    },
+                    {
+                        "step": 8,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0108.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0108.ogg",
+                        "en": "Can I unfasten my seat belt ?",
+                        "id": "Bolehkah saya melepas sabuk pengaman saya?"
+                    }
+                ]
+            },
+            {
+                "page": 5,
+                "steps": [
+                    {
+                        "step": 9,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0109.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0109.ogg",
+                        "en": "I would recommend you keep it fasten for your safety.",
+                        "id": "Saya sarankan Anda tetap mengencangkannya demi keselamatan Anda."
+                    },
+                    {
+                        "step": 10,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0110.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0110.ogg",
+                        "en": "Yes, good advice",
+                        "id": "Ya, saran yang bagus"
+                    }
+                ]
+            },
+            {
+                "page": 6,
+                "steps": [
+                    {
+                        "step": 11,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0111.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0111.ogg",
+                        "en": "For lunch we have salmon and lamb available.",
+                        "id": "Untuk makan siang kami menyediakan salmon dan domba."
+                    },
+                    {
+                        "step": 12,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0112.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0112.ogg",
+                        "en": "Oh, we are vegetarians.",
+                        "id": "Oh, kami vegetarian."
+                    }
+                ]
+            },
+            {
+                "page": 7,
+                "steps": [
+                    {
+                        "step": 13,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0113.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0113.ogg",
+                        "en": "How about a salad for lunch ?",
+                        "id": "Bagaimana kalau salad untuk makan siang?"
+                    },
+                    {
+                        "step": 14,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0114.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0114.ogg",
+                        "en": "Yes that will be nice",
+                        "id": "Ya, itu akan menyenangkan"
+                    }
+                ]
+            },
+            {
+                "page": 8,
+                "steps": [
+                    {
+                        "step": 15,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0115.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0115.ogg",
+                        "en": "Great, enjoy your meal and beverage.",
+                        "id": "Hebat, selamat menikmati makanan dan minuman Anda."
+                    },
+                    {
+                        "step": 16,
+                        "img":"https://t5w5.c20.e2-7.dev/sys/lesson/1/img/i0116.webp",
+                        "voice":"https://t5w5.c20.e2-7.dev/sys/lesson/1/voice/v0116.ogg",
+                        "en": "Thank you, very good service.",
+                        "id": "Terima kasih, pelayanannya sangat baik."
+                    }
+                ]
+            }
+        ]
+    }
+}

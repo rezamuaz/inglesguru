@@ -1,0 +1,93 @@
+{
+    "id": "s000005",
+    "title": "Restaurant",
+    "video": "",
+    "pages": [
+        {
+            "page": 1,
+            "steps": [
+                {
+                    "step": 1,
+                    "img": "Waitress.png",
+                    "en": "Welcome to our restaurant! Can I help you",
+                    "id": "Selamat datang di restoran kami! Ada yang bisa saya bantu?"
+                },
+                {
+                    "step": 2,
+                    "img": "Customer.png",
+                    "en": "Do you have any halal dishes?",
+                    "id": "Apakah kamu punya hidangan halal?"
+                },
+                {
+                    "page": 2,
+                    "step": [
+                        {
+                            "step": 3,
+                            "img": "Waitress.png",
+                            "en": "Of Course, For how many people?",
+                            "id": "Tentu, untuk berapa orang?"
+                        },
+                        {
+                            "step": 4,
+                            "img": "Customer.png",
+                            "en": "We need a table for four, Please",
+                            "id": "kami butuh meja untuk empat orang"
+                        }
+                    ]
+                },
+                {
+                    "page": 3,
+                    "step": [
+                        {
+                            "step": 5,
+                            "img": "Waitress.png",
+                            "en": "Yes Sir. Please be seated here. Here is the menu",
+                            "id": "Baik Pak, Silahkan duduk disini. Ini menunya"
+                        },
+                        {
+                            "step": 6,
+                            "img": "Customer.png",
+                            "en": "Thankyou. What would you recommend?.",
+                            "id": "Terima Kasih. Apa yang akan Anda rekomendasikan?"
+                        }
+                    ]
+                },
+                {
+                    "page": 4,
+                    "step": [
+                        {
+                            "step": 7,
+                            "img": "Waitress.png",
+                            "en": "I’d recommend the lasagna. It’s excellent!",
+                            "id": "Saya merekomendasikan lasagna. Rasanya sangat enak!"
+                        },
+                        {
+                            "step": 8,
+                            "img": "Customer.png",
+                            "en": "That sounds great. I’ll have that.",
+                            "id": "Terdengar enak. Aku akan pesan itu."
+                        }
+                    ]
+                },
+                {
+                    "page": 5,
+                    "step": [
+                        {
+                            "step": 9,
+                            "img": "Waitress.png",
+                            "en": "Would you like something to drink?",
+                            "id": "Apakah Anda ingin memesan minuman?"
+                        },
+                        {
+                            "step": 10,
+                            "img": "Customer.png",
+                            "en": "I’d like hot tea, Thankyou",
+                            "id": "Saya ingin teh panas. Terima Kasih"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "vocabulary": []
+}
