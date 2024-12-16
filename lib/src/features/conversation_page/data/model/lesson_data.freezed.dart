@@ -22,7 +22,9 @@ LessonData _$LessonDataFromJson(Map<String, dynamic> json) {
 mixin _$LessonData {
   @JsonKey(name: "scene_url", defaultValue: "")
   String? get sceneUrl => throw _privateConstructorUsedError;
-  List<LessonPage>? get pages => throw _privateConstructorUsedError;
+  @JsonKey(name: "tutor_url", defaultValue: "")
+  String? get tutorUrl => throw _privateConstructorUsedError;
+  List<LessonPage> get pages => throw _privateConstructorUsedError;
 
   /// Serializes this LessonData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +44,8 @@ abstract class $LessonDataCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "scene_url", defaultValue: "") String? sceneUrl,
-      List<LessonPage>? pages});
+      @JsonKey(name: "tutor_url", defaultValue: "") String? tutorUrl,
+      List<LessonPage> pages});
 }
 
 /// @nodoc
@@ -61,17 +64,22 @@ class _$LessonDataCopyWithImpl<$Res, $Val extends LessonData>
   @override
   $Res call({
     Object? sceneUrl = freezed,
-    Object? pages = freezed,
+    Object? tutorUrl = freezed,
+    Object? pages = null,
   }) {
     return _then(_value.copyWith(
       sceneUrl: freezed == sceneUrl
           ? _value.sceneUrl
           : sceneUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      pages: freezed == pages
+      tutorUrl: freezed == tutorUrl
+          ? _value.tutorUrl
+          : tutorUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pages: null == pages
           ? _value.pages
           : pages // ignore: cast_nullable_to_non_nullable
-              as List<LessonPage>?,
+              as List<LessonPage>,
     ) as $Val);
   }
 }
@@ -86,7 +94,8 @@ abstract class _$$LessonDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "scene_url", defaultValue: "") String? sceneUrl,
-      List<LessonPage>? pages});
+      @JsonKey(name: "tutor_url", defaultValue: "") String? tutorUrl,
+      List<LessonPage> pages});
 }
 
 /// @nodoc
@@ -103,17 +112,22 @@ class __$$LessonDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? sceneUrl = freezed,
-    Object? pages = freezed,
+    Object? tutorUrl = freezed,
+    Object? pages = null,
   }) {
     return _then(_$LessonDataImpl(
       sceneUrl: freezed == sceneUrl
           ? _value.sceneUrl
           : sceneUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      pages: freezed == pages
+      tutorUrl: freezed == tutorUrl
+          ? _value.tutorUrl
+          : tutorUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pages: null == pages
           ? _value._pages
           : pages // ignore: cast_nullable_to_non_nullable
-              as List<LessonPage>?,
+              as List<LessonPage>,
     ));
   }
 }
@@ -121,9 +135,10 @@ class __$$LessonDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LessonDataImpl implements _LessonData {
-  _$LessonDataImpl(
+  const _$LessonDataImpl(
       {@JsonKey(name: "scene_url", defaultValue: "") this.sceneUrl,
-      final List<LessonPage>? pages})
+      @JsonKey(name: "tutor_url", defaultValue: "") this.tutorUrl,
+      final List<LessonPage> pages = const []})
       : _pages = pages;
 
   factory _$LessonDataImpl.fromJson(Map<String, dynamic> json) =>
@@ -132,19 +147,21 @@ class _$LessonDataImpl implements _LessonData {
   @override
   @JsonKey(name: "scene_url", defaultValue: "")
   final String? sceneUrl;
-  final List<LessonPage>? _pages;
   @override
-  List<LessonPage>? get pages {
-    final value = _pages;
-    if (value == null) return null;
+  @JsonKey(name: "tutor_url", defaultValue: "")
+  final String? tutorUrl;
+  final List<LessonPage> _pages;
+  @override
+  @JsonKey()
+  List<LessonPage> get pages {
     if (_pages is EqualUnmodifiableListView) return _pages;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_pages);
   }
 
   @override
   String toString() {
-    return 'LessonData(sceneUrl: $sceneUrl, pages: $pages)';
+    return 'LessonData(sceneUrl: $sceneUrl, tutorUrl: $tutorUrl, pages: $pages)';
   }
 
   @override
@@ -154,13 +171,15 @@ class _$LessonDataImpl implements _LessonData {
             other is _$LessonDataImpl &&
             (identical(other.sceneUrl, sceneUrl) ||
                 other.sceneUrl == sceneUrl) &&
+            (identical(other.tutorUrl, tutorUrl) ||
+                other.tutorUrl == tutorUrl) &&
             const DeepCollectionEquality().equals(other._pages, _pages));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, sceneUrl, const DeepCollectionEquality().hash(_pages));
+  int get hashCode => Object.hash(runtimeType, sceneUrl, tutorUrl,
+      const DeepCollectionEquality().hash(_pages));
 
   /// Create a copy of LessonData
   /// with the given fields replaced by the non-null parameter values.
@@ -179,9 +198,10 @@ class _$LessonDataImpl implements _LessonData {
 }
 
 abstract class _LessonData implements LessonData {
-  factory _LessonData(
+  const factory _LessonData(
       {@JsonKey(name: "scene_url", defaultValue: "") final String? sceneUrl,
-      final List<LessonPage>? pages}) = _$LessonDataImpl;
+      @JsonKey(name: "tutor_url", defaultValue: "") final String? tutorUrl,
+      final List<LessonPage> pages}) = _$LessonDataImpl;
 
   factory _LessonData.fromJson(Map<String, dynamic> json) =
       _$LessonDataImpl.fromJson;
@@ -190,7 +210,10 @@ abstract class _LessonData implements LessonData {
   @JsonKey(name: "scene_url", defaultValue: "")
   String? get sceneUrl;
   @override
-  List<LessonPage>? get pages;
+  @JsonKey(name: "tutor_url", defaultValue: "")
+  String? get tutorUrl;
+  @override
+  List<LessonPage> get pages;
 
   /// Create a copy of LessonData
   /// with the given fields replaced by the non-null parameter values.
@@ -207,7 +230,9 @@ LessonPage _$LessonPageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LessonPage {
   ///Number of Page Comic
-  int? get page => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  @JsonKey(name: "page_id")
+  int get pageId => throw _privateConstructorUsedError;
 
   ///Step of Page (Normaly 2 Step/Page)
   List<LessonStep>? get steps => throw _privateConstructorUsedError;
@@ -228,7 +253,10 @@ abstract class $LessonPageCopyWith<$Res> {
           LessonPage value, $Res Function(LessonPage) then) =
       _$LessonPageCopyWithImpl<$Res, LessonPage>;
   @useResult
-  $Res call({int? page, List<LessonStep>? steps});
+  $Res call(
+      {int page,
+      @JsonKey(name: "page_id") int pageId,
+      List<LessonStep>? steps});
 }
 
 /// @nodoc
@@ -246,14 +274,19 @@ class _$LessonPageCopyWithImpl<$Res, $Val extends LessonPage>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? page = freezed,
+    Object? page = null,
+    Object? pageId = null,
     Object? steps = freezed,
   }) {
     return _then(_value.copyWith(
-      page: freezed == page
+      page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
+      pageId: null == pageId
+          ? _value.pageId
+          : pageId // ignore: cast_nullable_to_non_nullable
+              as int,
       steps: freezed == steps
           ? _value.steps
           : steps // ignore: cast_nullable_to_non_nullable
@@ -270,7 +303,10 @@ abstract class _$$LessonPageImplCopyWith<$Res>
       __$$LessonPageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? page, List<LessonStep>? steps});
+  $Res call(
+      {int page,
+      @JsonKey(name: "page_id") int pageId,
+      List<LessonStep>? steps});
 }
 
 /// @nodoc
@@ -286,14 +322,19 @@ class __$$LessonPageImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? page = freezed,
+    Object? page = null,
+    Object? pageId = null,
     Object? steps = freezed,
   }) {
     return _then(_$LessonPageImpl(
-      page: freezed == page
+      page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
+      pageId: null == pageId
+          ? _value.pageId
+          : pageId // ignore: cast_nullable_to_non_nullable
+              as int,
       steps: freezed == steps
           ? _value._steps
           : steps // ignore: cast_nullable_to_non_nullable
@@ -305,14 +346,22 @@ class __$$LessonPageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LessonPageImpl implements _LessonPage {
-  _$LessonPageImpl({this.page, final List<LessonStep>? steps}) : _steps = steps;
+  const _$LessonPageImpl(
+      {this.page = 0,
+      @JsonKey(name: "page_id") this.pageId = 0,
+      final List<LessonStep>? steps})
+      : _steps = steps;
 
   factory _$LessonPageImpl.fromJson(Map<String, dynamic> json) =>
       _$$LessonPageImplFromJson(json);
 
   ///Number of Page Comic
   @override
-  final int? page;
+  @JsonKey()
+  final int page;
+  @override
+  @JsonKey(name: "page_id")
+  final int pageId;
 
   ///Step of Page (Normaly 2 Step/Page)
   final List<LessonStep>? _steps;
@@ -329,7 +378,7 @@ class _$LessonPageImpl implements _LessonPage {
 
   @override
   String toString() {
-    return 'LessonPage(page: $page, steps: $steps)';
+    return 'LessonPage(page: $page, pageId: $pageId, steps: $steps)';
   }
 
   @override
@@ -338,13 +387,14 @@ class _$LessonPageImpl implements _LessonPage {
         (other.runtimeType == runtimeType &&
             other is _$LessonPageImpl &&
             (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageId, pageId) || other.pageId == pageId) &&
             const DeepCollectionEquality().equals(other._steps, _steps));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, page, const DeepCollectionEquality().hash(_steps));
+      runtimeType, page, pageId, const DeepCollectionEquality().hash(_steps));
 
   /// Create a copy of LessonPage
   /// with the given fields replaced by the non-null parameter values.
@@ -363,15 +413,20 @@ class _$LessonPageImpl implements _LessonPage {
 }
 
 abstract class _LessonPage implements LessonPage {
-  factory _LessonPage({final int? page, final List<LessonStep>? steps}) =
-      _$LessonPageImpl;
+  const factory _LessonPage(
+      {final int page,
+      @JsonKey(name: "page_id") final int pageId,
+      final List<LessonStep>? steps}) = _$LessonPageImpl;
 
   factory _LessonPage.fromJson(Map<String, dynamic> json) =
       _$LessonPageImpl.fromJson;
 
   ///Number of Page Comic
   @override
-  int? get page;
+  int get page;
+  @override
+  @JsonKey(name: "page_id")
+  int get pageId;
 
   ///Step of Page (Normaly 2 Step/Page)
   @override
@@ -545,7 +600,7 @@ class __$$LessonStepImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LessonStepImpl implements _LessonStep {
-  _$LessonStepImpl(
+  const _$LessonStepImpl(
       {@JsonKey(name: "step") this.step,
       @JsonKey(name: "contents") this.contents,
       @JsonKey(name: "assets") this.assets});
@@ -602,7 +657,7 @@ class _$LessonStepImpl implements _LessonStep {
 }
 
 abstract class _LessonStep implements LessonStep {
-  factory _LessonStep(
+  const factory _LessonStep(
       {@JsonKey(name: "step") final int? step,
       @JsonKey(name: "contents") final LessonContent? contents,
       @JsonKey(name: "assets") final LessonAssets? assets}) = _$LessonStepImpl;
@@ -738,7 +793,7 @@ class __$$LessonAssetsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LessonAssetsImpl implements _LessonAssets {
-  _$LessonAssetsImpl(
+  const _$LessonAssetsImpl(
       {@JsonKey(name: "image") this.image, @JsonKey(name: "voice") this.voice});
 
   factory _$LessonAssetsImpl.fromJson(Map<String, dynamic> json) =>
@@ -786,7 +841,7 @@ class _$LessonAssetsImpl implements _LessonAssets {
 }
 
 abstract class _LessonAssets implements LessonAssets {
-  factory _LessonAssets(
+  const factory _LessonAssets(
       {@JsonKey(name: "image") final String? image,
       @JsonKey(name: "voice") final String? voice}) = _$LessonAssetsImpl;
 
@@ -944,7 +999,7 @@ class __$$LessonContentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LessonContentImpl implements _LessonContent {
-  _$LessonContentImpl(
+  const _$LessonContentImpl(
       {@JsonKey(name: "primary_id") this.primaryId,
       @JsonKey(name: "primary_lang") this.primaryLang,
       @JsonKey(name: "secondary_id") this.secondaryId,
@@ -1008,7 +1063,7 @@ class _$LessonContentImpl implements _LessonContent {
 }
 
 abstract class _LessonContent implements LessonContent {
-  factory _LessonContent(
+  const factory _LessonContent(
           {@JsonKey(name: "primary_id") final int? primaryId,
           @JsonKey(name: "primary_lang") final String? primaryLang,
           @JsonKey(name: "secondary_id") final int? secondaryId,

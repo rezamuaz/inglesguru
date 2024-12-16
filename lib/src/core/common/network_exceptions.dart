@@ -42,7 +42,7 @@ class NetworkExceptions with _$NetworkExceptions {
 //503
   const factory NetworkExceptions.serviceUnavailable() = ServiceUnavailable;
 
-  const factory NetworkExceptions.unexpectedError() = UnexpectedError;
+  const factory NetworkExceptions.unexpectedError({String? error}) = UnexpectedError;
 
   const factory NetworkExceptions.sendTimeout() = SendTimeout;
 
@@ -77,7 +77,8 @@ class NetworkExceptions with _$NetworkExceptions {
         return networkExceptions;
       } on FormatException {
         return const NetworkExceptions.formatException();
-      } catch (asd) {
+      } catch (err) {
+        log('E: $error');
         return const NetworkExceptions.unexpectedError();
       }
     } else {

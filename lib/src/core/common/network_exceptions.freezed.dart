@@ -30,7 +30,7 @@ mixin _$NetworkExceptions {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -55,7 +55,7 @@ mixin _$NetworkExceptions {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -80,7 +80,7 @@ mixin _$NetworkExceptions {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -272,7 +272,7 @@ class _$BadRequestImpl implements BadRequest {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -300,7 +300,7 @@ class _$BadRequestImpl implements BadRequest {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -328,7 +328,7 @@ class _$BadRequestImpl implements BadRequest {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -528,7 +528,7 @@ class _$UnauthorisedRequestImpl implements UnauthorisedRequest {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -556,7 +556,7 @@ class _$UnauthorisedRequestImpl implements UnauthorisedRequest {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -584,7 +584,7 @@ class _$UnauthorisedRequestImpl implements UnauthorisedRequest {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -785,7 +785,7 @@ class _$ForbiddenRequestImpl implements ForbiddenRequest {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -813,7 +813,7 @@ class _$ForbiddenRequestImpl implements ForbiddenRequest {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -841,7 +841,7 @@ class _$ForbiddenRequestImpl implements ForbiddenRequest {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -1041,7 +1041,7 @@ class _$NotFoundImpl implements NotFound {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -1069,7 +1069,7 @@ class _$NotFoundImpl implements NotFound {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -1097,7 +1097,7 @@ class _$NotFoundImpl implements NotFound {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -1297,7 +1297,7 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -1325,7 +1325,7 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -1353,7 +1353,7 @@ class _$MethodNotAllowedImpl implements MethodNotAllowed {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -1553,7 +1553,7 @@ class _$NotAcceptableImpl implements NotAcceptable {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -1581,7 +1581,7 @@ class _$NotAcceptableImpl implements NotAcceptable {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -1609,7 +1609,7 @@ class _$NotAcceptableImpl implements NotAcceptable {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -1781,7 +1781,7 @@ class _$RequestTimeoutImpl implements RequestTimeout {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -1809,7 +1809,7 @@ class _$RequestTimeoutImpl implements RequestTimeout {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -1837,7 +1837,7 @@ class _$RequestTimeoutImpl implements RequestTimeout {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -2001,7 +2001,7 @@ class _$ConflictImpl implements Conflict {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -2029,7 +2029,7 @@ class _$ConflictImpl implements Conflict {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -2057,7 +2057,7 @@ class _$ConflictImpl implements Conflict {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -2265,7 +2265,7 @@ class _$UnprocessableEntityImpl implements UnprocessableEntity {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -2293,7 +2293,7 @@ class _$UnprocessableEntityImpl implements UnprocessableEntity {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -2321,7 +2321,7 @@ class _$UnprocessableEntityImpl implements UnprocessableEntity {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -2495,7 +2495,7 @@ class _$InternalServerErrorImpl implements InternalServerError {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -2523,7 +2523,7 @@ class _$InternalServerErrorImpl implements InternalServerError {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -2551,7 +2551,7 @@ class _$InternalServerErrorImpl implements InternalServerError {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -2715,7 +2715,7 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -2743,7 +2743,7 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -2771,7 +2771,7 @@ class _$ServiceUnavailableImpl implements ServiceUnavailable {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -2887,6 +2887,8 @@ abstract class _$$UnexpectedErrorImplCopyWith<$Res> {
   factory _$$UnexpectedErrorImplCopyWith(_$UnexpectedErrorImpl value,
           $Res Function(_$UnexpectedErrorImpl) then) =
       __$$UnexpectedErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? error});
 }
 
 /// @nodoc
@@ -2899,26 +2901,52 @@ class __$$UnexpectedErrorImplCopyWithImpl<$Res>
 
   /// Create a copy of NetworkExceptions
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(_$UnexpectedErrorImpl(
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$UnexpectedErrorImpl implements UnexpectedError {
-  const _$UnexpectedErrorImpl();
+  const _$UnexpectedErrorImpl({this.error});
+
+  @override
+  final String? error;
 
   @override
   String toString() {
-    return 'NetworkExceptions.unexpectedError()';
+    return 'NetworkExceptions.unexpectedError(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UnexpectedErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$UnexpectedErrorImpl &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of NetworkExceptions
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnexpectedErrorImplCopyWith<_$UnexpectedErrorImpl> get copyWith =>
+      __$$UnexpectedErrorImplCopyWithImpl<_$UnexpectedErrorImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2935,7 +2963,7 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -2946,7 +2974,7 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
   }) {
-    return unexpectedError();
+    return unexpectedError(error);
   }
 
   @override
@@ -2963,7 +2991,7 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -2974,7 +3002,7 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
   }) {
-    return unexpectedError?.call();
+    return unexpectedError?.call(error);
   }
 
   @override
@@ -2991,7 +3019,7 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -3004,7 +3032,7 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     required TResult orElse(),
   }) {
     if (unexpectedError != null) {
-      return unexpectedError();
+      return unexpectedError(error);
     }
     return orElse();
   }
@@ -3099,7 +3127,15 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
 }
 
 abstract class UnexpectedError implements NetworkExceptions {
-  const factory UnexpectedError() = _$UnexpectedErrorImpl;
+  const factory UnexpectedError({final String? error}) = _$UnexpectedErrorImpl;
+
+  String? get error;
+
+  /// Create a copy of NetworkExceptions
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UnexpectedErrorImplCopyWith<_$UnexpectedErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -3155,7 +3191,7 @@ class _$SendTimeoutImpl implements SendTimeout {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -3183,7 +3219,7 @@ class _$SendTimeoutImpl implements SendTimeout {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -3211,7 +3247,7 @@ class _$SendTimeoutImpl implements SendTimeout {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -3375,7 +3411,7 @@ class _$ReceiveTimeoutImpl implements ReceiveTimeout {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -3403,7 +3439,7 @@ class _$ReceiveTimeoutImpl implements ReceiveTimeout {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -3431,7 +3467,7 @@ class _$ReceiveTimeoutImpl implements ReceiveTimeout {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -3595,7 +3631,7 @@ class _$RequestCancelledImpl implements RequestCancelled {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -3623,7 +3659,7 @@ class _$RequestCancelledImpl implements RequestCancelled {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -3651,7 +3687,7 @@ class _$RequestCancelledImpl implements RequestCancelled {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -3816,7 +3852,7 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -3844,7 +3880,7 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -3872,7 +3908,7 @@ class _$NoInternetConnectionImpl implements NoInternetConnection {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -4036,7 +4072,7 @@ class _$CertificateFailedImpl implements CertificateFailed {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -4064,7 +4100,7 @@ class _$CertificateFailedImpl implements CertificateFailed {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -4092,7 +4128,7 @@ class _$CertificateFailedImpl implements CertificateFailed {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -4256,7 +4292,7 @@ class _$NotImplementedImpl implements NotImplemented {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -4284,7 +4320,7 @@ class _$NotImplementedImpl implements NotImplemented {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -4312,7 +4348,7 @@ class _$NotImplementedImpl implements NotImplemented {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -4476,7 +4512,7 @@ class _$FormatExceptionImpl implements FormatException {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -4504,7 +4540,7 @@ class _$FormatExceptionImpl implements FormatException {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -4532,7 +4568,7 @@ class _$FormatExceptionImpl implements FormatException {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -4696,7 +4732,7 @@ class _$UnableToProcessImpl implements UnableToProcess {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -4724,7 +4760,7 @@ class _$UnableToProcessImpl implements UnableToProcess {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -4752,7 +4788,7 @@ class _$UnableToProcessImpl implements UnableToProcess {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,
@@ -4943,7 +4979,7 @@ class _$DefaultErrorImpl implements DefaultError {
         unprocessableEntity,
     required TResult Function() internalServerError,
     required TResult Function() serviceUnavailable,
-    required TResult Function() unexpectedError,
+    required TResult Function(String? error) unexpectedError,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() requestCancelled,
@@ -4971,7 +5007,7 @@ class _$DefaultErrorImpl implements DefaultError {
     TResult? Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult? Function()? internalServerError,
     TResult? Function()? serviceUnavailable,
-    TResult? Function()? unexpectedError,
+    TResult? Function(String? error)? unexpectedError,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? requestCancelled,
@@ -4999,7 +5035,7 @@ class _$DefaultErrorImpl implements DefaultError {
     TResult Function(ErrorResponseMessage? reasons)? unprocessableEntity,
     TResult Function()? internalServerError,
     TResult Function()? serviceUnavailable,
-    TResult Function()? unexpectedError,
+    TResult Function(String? error)? unexpectedError,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? requestCancelled,

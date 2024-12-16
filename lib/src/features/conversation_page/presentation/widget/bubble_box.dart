@@ -2,20 +2,22 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'package:sysbit/src/features/conversation_page/presentation/widget/text_box.dart';
 
 class BubbleBox extends StatefulWidget {
-  BubbleBox(
-      {super.key,
-      required this.controller,
-      required this.heightText,
-      required this.widthText,
-      required this.eng,
-      required this.ind,
-      required this.playAudio,  
-      this.isLeftAlign = true})
-      : opacity = Tween<double>(
+  BubbleBox({
+    super.key,
+    required this.controller,
+    required this.eng,
+    required this.ind,
+    required this.constrain,
+    required this.playAudio,
+    this.audioDownlading = false,
+    required this.switchDialog,
+    this.isLeftAlign = true,
+  })  : opacity = Tween<double>(
           begin: 0.0,
           end: 1.0,
         ).animate(
@@ -24,49 +26,6 @@ class BubbleBox extends StatefulWidget {
             curve: const Interval(
               0.0,
               0.100,
-              curve: Curves.ease,
-            ),
-          ),
-        ),
-        width = Tween<double>(
-          begin: 0,
-          end: widthText,
-        ).animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: const Interval(
-              0.125,
-              0.250,
-              curve: Curves.easeInSine,
-            ),
-          ),
-        ),
-        height = Tween<double>(begin: 0, end: heightText).animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: const Interval(
-              0.250,
-              1,
-              curve: Curves.easeInSine,
-            ),
-          ),
-        ),
-        rightAlign = Tween<double>(begin: widthText, end: 0).animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: const Interval(
-              0.250,
-              0.4,
-              curve: Curves.ease,
-            ),
-          ),
-        ),
-        leftAlign = Tween<double>(begin: 0, end: 0).animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: const Interval(
-              0.250,
-              0.375,
               curve: Curves.ease,
             ),
           ),
@@ -86,19 +45,17 @@ class BubbleBox extends StatefulWidget {
         );
   final Animation<double> controller;
   final Animation<double> opacity;
-  final Animation<double> width;
-  final Animation<double> height;
   final Animation<EdgeInsets> padding;
-  final Animation<double> rightAlign;
-  final Animation<double> leftAlign;
-  final double heightText;
-  final double widthText;
+  final Function()? switchDialog;
+  final BoxConstraints constrain;
   final String eng;
   final String ind;
   final bool isLeftAlign;
+  final bool audioDownlading;
+
   ///Play Voice
- 
-  final void Function() playAudio;
+
+  final VoidCallback playAudio;
 
   @override
   State<BubbleBox> createState() => _BubbleBoxState();
@@ -107,9 +64,7 @@ class BubbleBox extends StatefulWidget {
 class _BubbleBoxState extends State<BubbleBox> with TickerProviderStateMixin {
   late AnimationController _controllerText;
   late Animation<double> _opacityIcon;
-  
 
- 
   Future<void> _playAnimation() async {
     try {
       await _controllerText.forward().orCancel;
@@ -155,50 +110,68 @@ class _BubbleBoxState extends State<BubbleBox> with TickerProviderStateMixin {
 
   Widget _buildAnimation(BuildContext context, Widget? child) {
     return Positioned(
-      top: MediaQuery.of(context).size.height *
-          0.25 *
-          0.75, // 75% of the container height
-      // left: 0,
-      left: widget.leftAlign.value,
-      right: widget.rightAlign.value,
-      child: Row(
-        textDirection: widget.isLeftAlign? TextDirection.ltr : TextDirection.rtl,
-        children: [
-          Expanded(
-            child: Container(
-               
-                height: widget.height.value,
-                padding: widget.padding.value,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black54, width: 2)),
-                child: TextBox(
-                    controller: _controllerText.view,
-                    eng: widget.eng,
-                    ind: widget.ind)),
-          ),
-
-          Transform.rotate(
-            angle: widget.isLeftAlign
-                ? 0 * (math.pi / 180)
-                : 180 * (math.pi / 180),
-            child: SizedBox(
-              width: 35,
-              child: AnimatedBuilder(
-                animation: _controllerText,
-                builder: (context, child) => IconButton(
-                    onPressed: widget.playAudio,
-                    icon: Icon(
-                      Icons.volume_up,
-                      size: 25,
-                      color: Colors.black54.withOpacity(_opacityIcon.value),
-                    )),
-              ),
+      top: widget.constrain.maxHeight * 0.6,
+      left: 0,
+      right: 0,
+      child: Container(
+        constraints:
+            BoxConstraints(minHeight: widget.constrain.maxHeight * 0.3),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          textDirection:
+              widget.isLeftAlign ? TextDirection.ltr : TextDirection.rtl,
+          children: [
+            Expanded(
+              child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.black54, width: 2)),
+                  child: TextBox(
+                      controller: _controllerText.view,
+                      eng: widget.eng,
+                      ind: widget.ind)),
             ),
-          )
-          
-        ],
+            Container(
+              width: 60,
+              // color: Colors.indigo,
+              alignment: Alignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AnimatedBuilder(
+                    animation: _controllerText,
+                    builder: (context, child) => widget.audioDownlading
+                        ? LoadingAnimationWidget.staggeredDotsWave(
+                            color: Colors.black26, size: 25)
+                        : Transform.rotate(
+                              angle: widget.isLeftAlign
+                                  ? 0 * (math.pi / 180)
+                                  : 180 * (math.pi / 180),
+                              child: IconButton.filledTonal(
+                                icon: const Icon(Icons.volume_up),
+                                onPressed: widget.playAudio,
+                                color: Colors.black54
+                                    .withOpacity(_opacityIcon.value),
+                              ),
+                            ),
+                  ),
+                  AnimatedBuilder(
+                    animation: _controllerText,
+                    builder: (context, child) => IconButton.filledTonal(
+                        onPressed: widget.switchDialog,
+                        icon: Icon(
+                          Icons.mic,
+                          color: Colors.black54.withOpacity(_opacityIcon.value),
+                        )),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

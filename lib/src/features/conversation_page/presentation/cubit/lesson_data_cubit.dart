@@ -3,12 +3,12 @@ import 'package:sysbit/src/features/conversation_page/data/model/lesson_data.dar
 
 
 class LessonDataCubit extends Cubit<LessonData> {
-  LessonDataCubit() : super(LessonData());
+  LessonDataCubit() : super(const LessonData());
 
   void change({
     LessonData? value,
    
   }){
-    emit(value??LessonData());
+    emit(value??const LessonData());
   }
 }

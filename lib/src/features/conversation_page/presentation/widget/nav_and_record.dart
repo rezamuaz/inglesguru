@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'package:sysbit/src/features/conversation_page/presentation/widget/pulser_button.dart';
 
 class NavAndRecord extends StatefulWidget {
-   NavAndRecord( 
-      {super.key,required this.controller,required this.record,required this.prevPage , required this.nextPage,this.curretPage} ): opacity = Tween<double>(
+  NavAndRecord(
+      {super.key,
+      required this.controller,
+      required this.record,
+      required this.prevPage,
+      required this.nextPage,
+      required this.pageNumber,
+      required this.totalPage,
+      this.curretPage,
+      this.isback = false})
+      : opacity = Tween<double>(
           begin: 0.0,
           end: 1.0,
         ).animate(
@@ -27,7 +35,9 @@ class NavAndRecord extends StatefulWidget {
   // final double level;
   final Animation<double> opacity;
   final Animation<double> controller;
-  
+  final bool isback;
+  final String pageNumber;
+  final String totalPage;
 
   @override
   State<NavAndRecord> createState() => _NavAndRecordState();
@@ -48,56 +58,28 @@ class _NavAndRecordState extends State<NavAndRecord> {
             child: ElevatedButton(
                 onPressed: widget.prevPage,
                 style: ElevatedButton.styleFrom(
-                
                     padding: const EdgeInsets.all(8),
                     foregroundColor: Colors.white,
-                    
-                    backgroundColor:
-                        widget.curretPage == 0 ? Colors.black12 : Colors.black54,
+                    backgroundColor: Colors.black54,
                     shape: const CircleBorder()),
-                child: const Icon(
-                  Icons.arrow_back,
-                  size: 36,
-                )),
+                child: widget.curretPage == 0
+                    ? const Icon(
+                        Icons.menu,
+                        size: 36,
+                      )
+                    : const Icon(
+                        Icons.arrow_back,
+                        size: 36,
+                      )),
           ),
           FadeTransition(
-            opacity: widget.opacity,
-            child: PulserButton(onPress: widget.record)
-            
-            // Container(
-            //   width: 70,
-            //   height: 70,
-            //   alignment: Alignment.center,
-            //   decoration: BoxDecoration(
-            //     boxShadow: [
-            //       BoxShadow(
-            //           blurRadius: .26,
-            //           spreadRadius: 0 * 1.5,
-            //           color: Colors.red.withOpacity(0.05))
-            //     ],
-            //     color: Colors.white,
-            //     borderRadius: const BorderRadius.all(Radius.circular(50)),
-            //   ),
-            //   child: IconButton(
-            //     onPressed: widget.record,
-            //     style: ElevatedButton.styleFrom(
-            //         elevation: 0,
-            //         padding: const EdgeInsets.all(8),
-            //         foregroundColor: 
-            //             Colors.black87,
-            //         backgroundColor: Colors.white,
-            //         // backgroundColor: Color(0xFFFF3F3F),
-            //         shape: CircleBorder(
-            //             side: BorderSide(
-            //                 color:  Colors.black87))),
-            //     //  child: LoadingAnimationWidget.hexagonDots(color: Color(0xFFFF3F3F), size: 40),
-            //     icon: const Icon(
-            //       Icons.mic,
-            //       size: 54,
-            //     ),
-            //   ),
-            // ),
-          ),
+              opacity: widget.opacity,
+              child: Text(
+                "${widget.pageNumber}/${widget.totalPage}",
+                style: GoogleFonts.inter(
+                  fontSize: 25,
+                ),
+              )),
           FadeTransition(
             opacity: widget.opacity,
             child: ElevatedButton(
@@ -107,10 +89,15 @@ class _NavAndRecordState extends State<NavAndRecord> {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.black54,
                     shape: const CircleBorder()),
-                child: const Icon(
-                  Icons.arrow_forward,
-                  size: 36,
-                )),
+                child: widget.isback
+                    ? const Icon(
+                        Icons.menu,
+                        size: 36,
+                      )
+                    : const Icon(
+                        Icons.arrow_forward,
+                        size: 36,
+                      )),
           )
         ],
       ),

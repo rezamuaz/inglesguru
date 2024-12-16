@@ -9,20 +9,24 @@ part of 'lesson_data.dart';
 _$LessonDataImpl _$$LessonDataImplFromJson(Map<String, dynamic> json) =>
     _$LessonDataImpl(
       sceneUrl: json['scene_url'] as String? ?? '',
+      tutorUrl: json['tutor_url'] as String? ?? '',
       pages: (json['pages'] as List<dynamic>?)
-          ?.map((e) => LessonPage.fromJson(e as Map<String, dynamic>))
-          .toList(),
+              ?.map((e) => LessonPage.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$LessonDataImplToJson(_$LessonDataImpl instance) =>
     <String, dynamic>{
       'scene_url': instance.sceneUrl,
+      'tutor_url': instance.tutorUrl,
       'pages': instance.pages,
     };
 
 _$LessonPageImpl _$$LessonPageImplFromJson(Map<String, dynamic> json) =>
     _$LessonPageImpl(
-      page: (json['page'] as num?)?.toInt(),
+      page: (json['page'] as num?)?.toInt() ?? 0,
+      pageId: (json['page_id'] as num?)?.toInt() ?? 0,
       steps: (json['steps'] as List<dynamic>?)
           ?.map((e) => LessonStep.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -31,6 +35,7 @@ _$LessonPageImpl _$$LessonPageImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$LessonPageImplToJson(_$LessonPageImpl instance) =>
     <String, dynamic>{
       'page': instance.page,
+      'page_id': instance.pageId,
       'steps': instance.steps,
     };
 

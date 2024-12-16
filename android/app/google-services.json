@@ -1,42 +1,57 @@
 {
   "project_info": {
-    "project_number": "663010130625",
-    "project_id": "manga-e061a",
-    "storage_bucket": "manga-e061a.appspot.com"
+    "project_number": "942458429602",
+    "project_id": "ingles-4f854",
+    "storage_bucket": "ingles-4f854.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:663010130625:android:ddeea80952a91872dff240",
+        "mobilesdk_app_id": "1:942458429602:android:b871f088447af63cb137fb",
         "android_client_info": {
-          "package_name": "com.mangachan.zero"
+          "package_name": "com.inglesguru.mesh"
         }
       },
       "oauth_client": [
         {
-          "client_id": "663010130625-pn9cs8o0jj5gkk8v1rp8c5l58tds5e6p.apps.googleusercontent.com",
+          "client_id": "942458429602-8btqf5k764vqc9cgnsklbjs0t94e1cu5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mangachan.zero",
-            "certificate_hash": "18d7830feee4f979d16ed6087a65e23ec7c28fe4"
+            "package_name": "com.inglesguru.mesh",
+            "certificate_hash": "4f96e90dea06a20dbee3d537ba0284774ad2318c"
           }
         },
         {
-          "client_id": "663010130625-gisdnh6i8mh1a6ldd2h0aea9bqiqcur2.apps.googleusercontent.com",
+          "client_id": "942458429602-s9m5ahphf03afl12a2ju911ec50t8lho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inglesguru.mesh",
+            "certificate_hash": "e076134b588a7719cf8f0fdb61a837a14674c893"
+          }
+        },
+        {
+          "client_id": "942458429602-ltk36lbps8hj94jrh7l7e39cl80chhkl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC0xgHxUKxiSB33PZD-yWozN1f2NCsXsYs"
+          "current_key": "AIzaSyB_LE5Qx6UtPU391TGmYxFRMU9PTe3ZMzk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "663010130625-gisdnh6i8mh1a6ldd2h0aea9bqiqcur2.apps.googleusercontent.com",
+              "client_id": "942458429602-ltk36lbps8hj94jrh7l7e39cl80chhkl.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "942458429602-cbk63bsfmqppm24u83632o20hvlh363t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.inglesguru.sys"
+              }
             }
           ]
         }

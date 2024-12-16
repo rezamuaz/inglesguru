@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TextState {
+  String? get origintext => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
   Color? get textColor => throw _privateConstructorUsedError;
   bool get isCorrect => throw _privateConstructorUsedError;
@@ -33,7 +34,12 @@ abstract class $TextStateCopyWith<$Res> {
   factory $TextStateCopyWith(TextState value, $Res Function(TextState) then) =
       _$TextStateCopyWithImpl<$Res, TextState>;
   @useResult
-  $Res call({String? text, Color? textColor, bool isCorrect, bool init});
+  $Res call(
+      {String? origintext,
+      String? text,
+      Color? textColor,
+      bool isCorrect,
+      bool init});
 }
 
 /// @nodoc
@@ -51,12 +57,17 @@ class _$TextStateCopyWithImpl<$Res, $Val extends TextState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? origintext = freezed,
     Object? text = freezed,
     Object? textColor = freezed,
     Object? isCorrect = null,
     Object? init = null,
   }) {
     return _then(_value.copyWith(
+      origintext: freezed == origintext
+          ? _value.origintext
+          : origintext // ignore: cast_nullable_to_non_nullable
+              as String?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -85,7 +96,12 @@ abstract class _$$TextStateImplCopyWith<$Res>
       __$$TextStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? text, Color? textColor, bool isCorrect, bool init});
+  $Res call(
+      {String? origintext,
+      String? text,
+      Color? textColor,
+      bool isCorrect,
+      bool init});
 }
 
 /// @nodoc
@@ -101,12 +117,17 @@ class __$$TextStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? origintext = freezed,
     Object? text = freezed,
     Object? textColor = freezed,
     Object? isCorrect = null,
     Object? init = null,
   }) {
     return _then(_$TextStateImpl(
+      origintext: freezed == origintext
+          ? _value.origintext
+          : origintext // ignore: cast_nullable_to_non_nullable
+              as String?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -131,8 +152,14 @@ class __$$TextStateImplCopyWithImpl<$Res>
 
 class _$TextStateImpl implements _TextState {
   _$TextStateImpl(
-      {this.text, this.textColor, this.isCorrect = false, this.init = false});
+      {this.origintext,
+      this.text,
+      this.textColor,
+      this.isCorrect = false,
+      this.init = false});
 
+  @override
+  final String? origintext;
   @override
   final String? text;
   @override
@@ -146,7 +173,7 @@ class _$TextStateImpl implements _TextState {
 
   @override
   String toString() {
-    return 'TextState(text: $text, textColor: $textColor, isCorrect: $isCorrect, init: $init)';
+    return 'TextState(origintext: $origintext, text: $text, textColor: $textColor, isCorrect: $isCorrect, init: $init)';
   }
 
   @override
@@ -154,6 +181,8 @@ class _$TextStateImpl implements _TextState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TextStateImpl &&
+            (identical(other.origintext, origintext) ||
+                other.origintext == origintext) &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.textColor, textColor) ||
                 other.textColor == textColor) &&
@@ -164,7 +193,7 @@ class _$TextStateImpl implements _TextState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, text, textColor, isCorrect, init);
+      Object.hash(runtimeType, origintext, text, textColor, isCorrect, init);
 
   /// Create a copy of TextState
   /// with the given fields replaced by the non-null parameter values.
@@ -177,11 +206,14 @@ class _$TextStateImpl implements _TextState {
 
 abstract class _TextState implements TextState {
   factory _TextState(
-      {final String? text,
+      {final String? origintext,
+      final String? text,
       final Color? textColor,
       final bool isCorrect,
       final bool init}) = _$TextStateImpl;
 
+  @override
+  String? get origintext;
   @override
   String? get text;
   @override

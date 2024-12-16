@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserAuth user, DeviceInfo deviceId) signing,
+    required TResult Function(UserAuth user) signing,
     required TResult Function() signout,
     required TResult Function() checking,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserAuth user, DeviceInfo deviceId)? signing,
+    TResult? Function(UserAuth user)? signing,
     TResult? Function()? signout,
     TResult? Function()? checking,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserAuth user, DeviceInfo deviceId)? signing,
+    TResult Function(UserAuth user)? signing,
     TResult Function()? signout,
     TResult Function()? checking,
     required TResult orElse(),
@@ -88,10 +88,9 @@ abstract class _$$SigningImplCopyWith<$Res> {
           _$SigningImpl value, $Res Function(_$SigningImpl) then) =
       __$$SigningImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserAuth user, DeviceInfo deviceId});
+  $Res call({UserAuth user});
 
   $UserAuthCopyWith<$Res> get user;
-  $DeviceInfoCopyWith<$Res> get deviceId;
 }
 
 /// @nodoc
@@ -108,17 +107,12 @@ class __$$SigningImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
-    Object? deviceId = null,
   }) {
     return _then(_$SigningImpl(
       null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserAuth,
-      null == deviceId
-          ? _value.deviceId
-          : deviceId // ignore: cast_nullable_to_non_nullable
-              as DeviceInfo,
     ));
   }
 
@@ -131,31 +125,19 @@ class __$$SigningImplCopyWithImpl<$Res>
       return _then(_value.copyWith(user: value));
     });
   }
-
-  /// Create a copy of AuthEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DeviceInfoCopyWith<$Res> get deviceId {
-    return $DeviceInfoCopyWith<$Res>(_value.deviceId, (value) {
-      return _then(_value.copyWith(deviceId: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$SigningImpl implements _Signing {
-  const _$SigningImpl(this.user, this.deviceId);
+  const _$SigningImpl(this.user);
 
   @override
   final UserAuth user;
-  @override
-  final DeviceInfo deviceId;
 
   @override
   String toString() {
-    return 'AuthEvent.signing(user: $user, deviceId: $deviceId)';
+    return 'AuthEvent.signing(user: $user)';
   }
 
   @override
@@ -163,13 +145,11 @@ class _$SigningImpl implements _Signing {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SigningImpl &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.deviceId, deviceId) ||
-                other.deviceId == deviceId));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, deviceId);
+  int get hashCode => Object.hash(runtimeType, user);
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -182,33 +162,33 @@ class _$SigningImpl implements _Signing {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserAuth user, DeviceInfo deviceId) signing,
+    required TResult Function(UserAuth user) signing,
     required TResult Function() signout,
     required TResult Function() checking,
   }) {
-    return signing(user, deviceId);
+    return signing(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserAuth user, DeviceInfo deviceId)? signing,
+    TResult? Function(UserAuth user)? signing,
     TResult? Function()? signout,
     TResult? Function()? checking,
   }) {
-    return signing?.call(user, deviceId);
+    return signing?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserAuth user, DeviceInfo deviceId)? signing,
+    TResult Function(UserAuth user)? signing,
     TResult Function()? signout,
     TResult Function()? checking,
     required TResult orElse(),
   }) {
     if (signing != null) {
-      return signing(user, deviceId);
+      return signing(user);
     }
     return orElse();
   }
@@ -249,11 +229,9 @@ class _$SigningImpl implements _Signing {
 }
 
 abstract class _Signing implements AuthEvent {
-  const factory _Signing(final UserAuth user, final DeviceInfo deviceId) =
-      _$SigningImpl;
+  const factory _Signing(final UserAuth user) = _$SigningImpl;
 
   UserAuth get user;
-  DeviceInfo get deviceId;
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -303,7 +281,7 @@ class _$SignoutImpl implements _Signout {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserAuth user, DeviceInfo deviceId) signing,
+    required TResult Function(UserAuth user) signing,
     required TResult Function() signout,
     required TResult Function() checking,
   }) {
@@ -313,7 +291,7 @@ class _$SignoutImpl implements _Signout {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserAuth user, DeviceInfo deviceId)? signing,
+    TResult? Function(UserAuth user)? signing,
     TResult? Function()? signout,
     TResult? Function()? checking,
   }) {
@@ -323,7 +301,7 @@ class _$SignoutImpl implements _Signout {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserAuth user, DeviceInfo deviceId)? signing,
+    TResult Function(UserAuth user)? signing,
     TResult Function()? signout,
     TResult Function()? checking,
     required TResult orElse(),
@@ -414,7 +392,7 @@ class _$CheckingImpl implements _Checking {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserAuth user, DeviceInfo deviceId) signing,
+    required TResult Function(UserAuth user) signing,
     required TResult Function() signout,
     required TResult Function() checking,
   }) {
@@ -424,7 +402,7 @@ class _$CheckingImpl implements _Checking {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserAuth user, DeviceInfo deviceId)? signing,
+    TResult? Function(UserAuth user)? signing,
     TResult? Function()? signout,
     TResult? Function()? checking,
   }) {
@@ -434,7 +412,7 @@ class _$CheckingImpl implements _Checking {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserAuth user, DeviceInfo deviceId)? signing,
+    TResult Function(UserAuth user)? signing,
     TResult Function()? signout,
     TResult Function()? checking,
     required TResult orElse(),
@@ -490,7 +468,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserHive? user) isAuthorized,
+    required TResult Function() isAuthorized,
     required TResult Function() unAuthorized,
   }) =>
       throw _privateConstructorUsedError;
@@ -498,7 +476,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserHive? user)? isAuthorized,
+    TResult? Function()? isAuthorized,
     TResult? Function()? unAuthorized,
   }) =>
       throw _privateConstructorUsedError;
@@ -506,7 +484,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserHive? user)? isAuthorized,
+    TResult Function()? isAuthorized,
     TResult Function()? unAuthorized,
     required TResult orElse(),
   }) =>
@@ -601,7 +579,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserHive? user) isAuthorized,
+    required TResult Function() isAuthorized,
     required TResult Function() unAuthorized,
   }) {
     return initial();
@@ -612,7 +590,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserHive? user)? isAuthorized,
+    TResult? Function()? isAuthorized,
     TResult? Function()? unAuthorized,
   }) {
     return initial?.call();
@@ -623,7 +601,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserHive? user)? isAuthorized,
+    TResult Function()? isAuthorized,
     TResult Function()? unAuthorized,
     required TResult orElse(),
   }) {
@@ -718,7 +696,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserHive? user) isAuthorized,
+    required TResult Function() isAuthorized,
     required TResult Function() unAuthorized,
   }) {
     return loading();
@@ -729,7 +707,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserHive? user)? isAuthorized,
+    TResult? Function()? isAuthorized,
     TResult? Function()? unAuthorized,
   }) {
     return loading?.call();
@@ -740,7 +718,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserHive? user)? isAuthorized,
+    TResult Function()? isAuthorized,
     TResult Function()? unAuthorized,
     required TResult orElse(),
   }) {
@@ -797,10 +775,6 @@ abstract class _$$IsAuthorizedImplCopyWith<$Res> {
   factory _$$IsAuthorizedImplCopyWith(
           _$IsAuthorizedImpl value, $Res Function(_$IsAuthorizedImpl) then) =
       __$$IsAuthorizedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserHive? user});
-
-  $UserHiveCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -813,75 +787,36 @@ class __$$IsAuthorizedImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(_$IsAuthorizedImpl(
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserHive?,
-    ));
-  }
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserHiveCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserHiveCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$IsAuthorizedImpl implements _IsAuthorized {
-  const _$IsAuthorizedImpl({this.user});
-
-  @override
-  final UserHive? user;
+  const _$IsAuthorizedImpl();
 
   @override
   String toString() {
-    return 'AuthState.isAuthorized(user: $user)';
+    return 'AuthState.isAuthorized()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$IsAuthorizedImpl &&
-            (identical(other.user, user) || other.user == user));
+        (other.runtimeType == runtimeType && other is _$IsAuthorizedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$IsAuthorizedImplCopyWith<_$IsAuthorizedImpl> get copyWith =>
-      __$$IsAuthorizedImplCopyWithImpl<_$IsAuthorizedImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserHive? user) isAuthorized,
+    required TResult Function() isAuthorized,
     required TResult Function() unAuthorized,
   }) {
-    return isAuthorized(user);
+    return isAuthorized();
   }
 
   @override
@@ -889,10 +824,10 @@ class _$IsAuthorizedImpl implements _IsAuthorized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserHive? user)? isAuthorized,
+    TResult? Function()? isAuthorized,
     TResult? Function()? unAuthorized,
   }) {
-    return isAuthorized?.call(user);
+    return isAuthorized?.call();
   }
 
   @override
@@ -900,12 +835,12 @@ class _$IsAuthorizedImpl implements _IsAuthorized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserHive? user)? isAuthorized,
+    TResult Function()? isAuthorized,
     TResult Function()? unAuthorized,
     required TResult orElse(),
   }) {
     if (isAuthorized != null) {
-      return isAuthorized(user);
+      return isAuthorized();
     }
     return orElse();
   }
@@ -949,15 +884,7 @@ class _$IsAuthorizedImpl implements _IsAuthorized {
 }
 
 abstract class _IsAuthorized implements AuthState {
-  const factory _IsAuthorized({final UserHive? user}) = _$IsAuthorizedImpl;
-
-  UserHive? get user;
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$IsAuthorizedImplCopyWith<_$IsAuthorizedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _IsAuthorized() = _$IsAuthorizedImpl;
 }
 
 /// @nodoc
@@ -1003,7 +930,7 @@ class _$UnAuthorizedImpl implements _UnAuthorized {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserHive? user) isAuthorized,
+    required TResult Function() isAuthorized,
     required TResult Function() unAuthorized,
   }) {
     return unAuthorized();
@@ -1014,7 +941,7 @@ class _$UnAuthorizedImpl implements _UnAuthorized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserHive? user)? isAuthorized,
+    TResult? Function()? isAuthorized,
     TResult? Function()? unAuthorized,
   }) {
     return unAuthorized?.call();
@@ -1025,7 +952,7 @@ class _$UnAuthorizedImpl implements _UnAuthorized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserHive? user)? isAuthorized,
+    TResult Function()? isAuthorized,
     TResult Function()? unAuthorized,
     required TResult orElse(),
   }) {

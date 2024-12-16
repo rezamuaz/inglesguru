@@ -11,8 +11,8 @@ class AcccountMenuButtons extends StatelessWidget {
     return TextButton.icon(onPressed: onTap,iconAlignment: IconAlignment.start, label: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title??"",style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w400),),
-        const Icon(Icons.arrow_forward_ios)
+        Text(title??"",style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w400,color: Colors.black87),),
+        const Icon(Icons.arrow_forward_ios,color: Colors.black87)
       ],
     ),icon: icon);
   }

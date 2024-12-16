@@ -5,7 +5,10 @@ part 'lesson_data.g.dart';
 
 @freezed
 class LessonData with _$LessonData {
-  factory LessonData({@JsonKey(name: "scene_url",defaultValue: "") final String? sceneUrl,final List<LessonPage>? pages}) = _LessonData;
+ const factory LessonData(
+      {@JsonKey(name: "scene_url", defaultValue: "") final String? sceneUrl,
+      @JsonKey(name: "tutor_url", defaultValue: "") final String? tutorUrl,
+      @Default([]) final List<LessonPage> pages}) = _LessonData;
 
   factory LessonData.fromJson(Map<String, dynamic> json) =>
       _$LessonDataFromJson(json);
@@ -13,11 +16,11 @@ class LessonData with _$LessonData {
 
 @freezed
 class LessonPage with _$LessonPage {
-  factory LessonPage(
+const  factory LessonPage(
       {
       ///Number of Page Comic
-      final int? page,
-
+     @Default(0) final int page,
+      @Default(0) @JsonKey(name: "page_id") final int pageId,
       ///Step of Page (Normaly 2 Step/Page)
       final List<LessonStep>? steps}) = _LessonPage;
 
@@ -25,9 +28,11 @@ class LessonPage with _$LessonPage {
       _$LessonPageFromJson(json);
 }
 
+
+
 @freezed
 class LessonStep with _$LessonStep {
-  factory LessonStep({
+ const factory LessonStep({
     @JsonKey(name: "step") final int? step,
 
     ///English Language Comic Character
@@ -41,7 +46,7 @@ class LessonStep with _$LessonStep {
 
 @freezed
 class LessonAssets with _$LessonAssets {
-  factory LessonAssets({
+ const factory LessonAssets({
     @JsonKey(name: "image") final String? image,
     @JsonKey(name: "voice") final String? voice,
   }) = _LessonAssets;
@@ -52,7 +57,7 @@ class LessonAssets with _$LessonAssets {
 
 @freezed
 class LessonContent with _$LessonContent {
-  factory LessonContent(
+const  factory LessonContent(
           {@JsonKey(name: "primary_id") final int? primaryId,
           @JsonKey(name: "primary_lang") final String? primaryLang,
           @JsonKey(name: "secondary_id") final int? secondaryId,

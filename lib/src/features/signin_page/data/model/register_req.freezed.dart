@@ -21,10 +21,14 @@ RegisterReqMod _$RegisterReqModFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RegisterReqMod {
   String? get appId => throw _privateConstructorUsedError;
-  @JsonKey(name: "id_token", defaultValue: "")
+  @JsonKey(name: "id_token")
   String? get idToken => throw _privateConstructorUsedError;
   String? get os => throw _privateConstructorUsedError;
-  String? get nativeLingo => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  @JsonKey(name: "fcm_token")
+  String? get fcmToken => throw _privateConstructorUsedError;
+  @JsonKey(name: "device_info")
+  Map<String, dynamic> get deviceInfo => throw _privateConstructorUsedError;
 
   /// Serializes this RegisterReqMod to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,9 +48,11 @@ abstract class $RegisterReqModCopyWith<$Res> {
   @useResult
   $Res call(
       {String? appId,
-      @JsonKey(name: "id_token", defaultValue: "") String? idToken,
+      @JsonKey(name: "id_token") String? idToken,
       String? os,
-      String? nativeLingo});
+      String? language,
+      @JsonKey(name: "fcm_token") String? fcmToken,
+      @JsonKey(name: "device_info") Map<String, dynamic> deviceInfo});
 }
 
 /// @nodoc
@@ -67,7 +73,9 @@ class _$RegisterReqModCopyWithImpl<$Res, $Val extends RegisterReqMod>
     Object? appId = freezed,
     Object? idToken = freezed,
     Object? os = freezed,
-    Object? nativeLingo = freezed,
+    Object? language = freezed,
+    Object? fcmToken = freezed,
+    Object? deviceInfo = null,
   }) {
     return _then(_value.copyWith(
       appId: freezed == appId
@@ -82,10 +90,18 @@ class _$RegisterReqModCopyWithImpl<$Res, $Val extends RegisterReqMod>
           ? _value.os
           : os // ignore: cast_nullable_to_non_nullable
               as String?,
-      nativeLingo: freezed == nativeLingo
-          ? _value.nativeLingo
-          : nativeLingo // ignore: cast_nullable_to_non_nullable
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
               as String?,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceInfo: null == deviceInfo
+          ? _value.deviceInfo
+          : deviceInfo // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ) as $Val);
   }
 }
@@ -100,9 +116,11 @@ abstract class _$$RegisterReqModImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? appId,
-      @JsonKey(name: "id_token", defaultValue: "") String? idToken,
+      @JsonKey(name: "id_token") String? idToken,
       String? os,
-      String? nativeLingo});
+      String? language,
+      @JsonKey(name: "fcm_token") String? fcmToken,
+      @JsonKey(name: "device_info") Map<String, dynamic> deviceInfo});
 }
 
 /// @nodoc
@@ -121,7 +139,9 @@ class __$$RegisterReqModImplCopyWithImpl<$Res>
     Object? appId = freezed,
     Object? idToken = freezed,
     Object? os = freezed,
-    Object? nativeLingo = freezed,
+    Object? language = freezed,
+    Object? fcmToken = freezed,
+    Object? deviceInfo = null,
   }) {
     return _then(_$RegisterReqModImpl(
       appId: freezed == appId
@@ -136,10 +156,18 @@ class __$$RegisterReqModImplCopyWithImpl<$Res>
           ? _value.os
           : os // ignore: cast_nullable_to_non_nullable
               as String?,
-      nativeLingo: freezed == nativeLingo
-          ? _value.nativeLingo
-          : nativeLingo // ignore: cast_nullable_to_non_nullable
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
               as String?,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceInfo: null == deviceInfo
+          ? _value._deviceInfo
+          : deviceInfo // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -147,11 +175,15 @@ class __$$RegisterReqModImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RegisterReqModImpl implements _RegisterReqMod {
-  _$RegisterReqModImpl(
+  const _$RegisterReqModImpl(
       {this.appId,
-      @JsonKey(name: "id_token", defaultValue: "") this.idToken,
-      this.os,
-      this.nativeLingo});
+      @JsonKey(name: "id_token") this.idToken = "",
+      this.os = "",
+      this.language = "",
+      @JsonKey(name: "fcm_token") this.fcmToken = "",
+      @JsonKey(name: "device_info")
+      final Map<String, dynamic> deviceInfo = const {}})
+      : _deviceInfo = deviceInfo;
 
   factory _$RegisterReqModImpl.fromJson(Map<String, dynamic> json) =>
       _$$RegisterReqModImplFromJson(json);
@@ -159,16 +191,29 @@ class _$RegisterReqModImpl implements _RegisterReqMod {
   @override
   final String? appId;
   @override
-  @JsonKey(name: "id_token", defaultValue: "")
+  @JsonKey(name: "id_token")
   final String? idToken;
   @override
+  @JsonKey()
   final String? os;
   @override
-  final String? nativeLingo;
+  @JsonKey()
+  final String? language;
+  @override
+  @JsonKey(name: "fcm_token")
+  final String? fcmToken;
+  final Map<String, dynamic> _deviceInfo;
+  @override
+  @JsonKey(name: "device_info")
+  Map<String, dynamic> get deviceInfo {
+    if (_deviceInfo is EqualUnmodifiableMapView) return _deviceInfo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_deviceInfo);
+  }
 
   @override
   String toString() {
-    return 'RegisterReqMod(appId: $appId, idToken: $idToken, os: $os, nativeLingo: $nativeLingo)';
+    return 'RegisterReqMod(appId: $appId, idToken: $idToken, os: $os, language: $language, fcmToken: $fcmToken, deviceInfo: $deviceInfo)';
   }
 
   @override
@@ -179,13 +224,18 @@ class _$RegisterReqModImpl implements _RegisterReqMod {
             (identical(other.appId, appId) || other.appId == appId) &&
             (identical(other.idToken, idToken) || other.idToken == idToken) &&
             (identical(other.os, os) || other.os == os) &&
-            (identical(other.nativeLingo, nativeLingo) ||
-                other.nativeLingo == nativeLingo));
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken) &&
+            const DeepCollectionEquality()
+                .equals(other._deviceInfo, _deviceInfo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, appId, idToken, os, nativeLingo);
+  int get hashCode => Object.hash(runtimeType, appId, idToken, os, language,
+      fcmToken, const DeepCollectionEquality().hash(_deviceInfo));
 
   /// Create a copy of RegisterReqMod
   /// with the given fields replaced by the non-null parameter values.
@@ -205,11 +255,14 @@ class _$RegisterReqModImpl implements _RegisterReqMod {
 }
 
 abstract class _RegisterReqMod implements RegisterReqMod {
-  factory _RegisterReqMod(
+  const factory _RegisterReqMod(
       {final String? appId,
-      @JsonKey(name: "id_token", defaultValue: "") final String? idToken,
+      @JsonKey(name: "id_token") final String? idToken,
       final String? os,
-      final String? nativeLingo}) = _$RegisterReqModImpl;
+      final String? language,
+      @JsonKey(name: "fcm_token") final String? fcmToken,
+      @JsonKey(name: "device_info")
+      final Map<String, dynamic> deviceInfo}) = _$RegisterReqModImpl;
 
   factory _RegisterReqMod.fromJson(Map<String, dynamic> json) =
       _$RegisterReqModImpl.fromJson;
@@ -217,12 +270,18 @@ abstract class _RegisterReqMod implements RegisterReqMod {
   @override
   String? get appId;
   @override
-  @JsonKey(name: "id_token", defaultValue: "")
+  @JsonKey(name: "id_token")
   String? get idToken;
   @override
   String? get os;
   @override
-  String? get nativeLingo;
+  String? get language;
+  @override
+  @JsonKey(name: "fcm_token")
+  String? get fcmToken;
+  @override
+  @JsonKey(name: "device_info")
+  Map<String, dynamic> get deviceInfo;
 
   /// Create a copy of RegisterReqMod
   /// with the given fields replaced by the non-null parameter values.

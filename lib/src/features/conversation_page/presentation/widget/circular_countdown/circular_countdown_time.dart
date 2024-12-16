@@ -1,5 +1,4 @@
 
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
@@ -88,8 +87,12 @@ class CircularCountDownTimer extends StatefulWidget {
   */
   final Function(Function(Duration duration) defaultFormatterFunction,
       Duration duration)? timeFormatterFunction;
-  final Widget? initialIcon;
+  /// add initial Icon.
+  final Widget initialIcon;
+  /// add repeatIcon initial Icon.
   final Widget? repeateIcon;
+
+  final bool useIcon;
   const CircularCountDownTimer({
     required this.width,
     required this.height,
@@ -99,6 +102,7 @@ class CircularCountDownTimer extends StatefulWidget {
     this.timeFormatterFunction,
     this.initialIcon = const SizedBox(),
     this.repeateIcon= const SizedBox(),
+    this.useIcon = false,
     this.backgroundColor,
     this.fillGradient,
     this.ringGradient,
@@ -130,29 +134,70 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
   Animation<double>? _countDownAnimation;
   CountDownController? countDownController;
 
-  Widget get time {
+ 
 
-    Widget iconbox = SizedBox();
-    // String timeStamp = "";
+ Widget get time {
+
+    Widget iconbox = const SizedBox();
+    String timeStamp = "";
     if (widget.isReverse &&
         !widget.autoStart &&
         !countDownController!.isStarted.value) {
-      // if (widget.timeFormatterFunction != null) {
-      //   timeStamp = Function.apply(widget.timeFormatterFunction!,
-      //       [_getTime, Duration(seconds: widget.duration)]).toString();
-      // } else {
-      //   timeStamp = _getTime(Duration(seconds: widget.duration));
-      // }
-      iconbox = widget.initialIcon ?? Icon(Icons.mic);
+      if (widget.timeFormatterFunction != null) {
+        timeStamp = Function.apply(widget.timeFormatterFunction!,
+            [_getTime, Duration(seconds: widget.duration)]).toString();
+          iconbox = widget.useIcon? widget.initialIcon : Text(timeStamp);
+      } else {
+        timeStamp = _getTime(Duration(seconds: widget.duration));
+         iconbox =  widget.useIcon? widget.initialIcon :  Text(timeStamp);
+      }
+      
     } else {
-      iconbox = widget.repeateIcon ?? Icon(Icons.replay);
+      Duration? duration = _controller!.duration! * _controller!.value;
+      if (widget.timeFormatterFunction != null) {
+        iconbox = Text(Function.apply(widget.timeFormatterFunction!, [_getTime, duration])
+                .toString());
+        // timeStamp =
+        //     Function.apply(widget.timeFormatterFunction!, [_getTime, duration])
+        //         .toString();
+      } else {
+        iconbox = Text(_getTime(duration));
+        // timeStamp = _getTime(duration);
+      }
     }
-    // if (widget.onChange != null){
-    //   widget.onChange!(timeStamp);
-    // }
+    if (widget.onChange != null){
+      widget.onChange!(timeStamp);
+    }
 
    return iconbox;
   }
+  
+
+  //  String get time {
+  //   String timeStamp = "";
+  //   if (widget.isReverse &&
+  //       !widget.autoStart &&
+  //       !countDownController!.isStarted.value) {
+  //     if (widget.timeFormatterFunction != null) {
+  //       timeStamp = Function.apply(widget.timeFormatterFunction!,
+  //           [_getTime, Duration(seconds: widget.duration)]).toString();
+  //     } else {
+  //       timeStamp = _getTime(Duration(seconds: widget.duration));
+  //     }
+  //   } else {
+  //     Duration? duration = _controller!.duration! * _controller!.value;
+  //     if (widget.timeFormatterFunction != null) {
+  //       timeStamp =
+  //           Function.apply(widget.timeFormatterFunction!, [_getTime, duration])
+  //               .toString();
+  //     } else {
+  //       timeStamp = _getTime(duration);
+  //     }
+  //   }
+  //   if (widget.onChange != null) widget.onChange!(timeStamp);
+
+  //   return timeStamp;
+  // }
 
   void _setAnimation() {
     if (widget.autoStart) {
@@ -311,6 +356,20 @@ class CircularCountDownTimerState extends State<CircularCountDownTimer>
                             child: time
                           )
                         : Container(),
+                    //  widget.isTimerTextShown
+                    //     ? Align(
+                    //         alignment: FractionalOffset.center,
+                    //         child: Text(
+                    //           time,
+                    //           style: widget.textStyle ??
+                    //               const TextStyle(
+                    //                 fontSize: 16.0,
+                    //                 color: Colors.black,
+                    //               ),
+                    //           textAlign: widget.textAlign,
+                    //         ),
+                    //       )
+                    //     : Container(),
                   ],
                 ),
               ),

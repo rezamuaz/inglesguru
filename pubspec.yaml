@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.0+9
 
 environment:
   sdk: '>=3.4.4 <4.0.0'
@@ -37,8 +37,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   speech_to_text: ^7.0.0
-  # flutter_tts: ^4.0.2
-  # speech_to_text_google_dialog: ^0.0.6
   google_fonts: ^6.2.1
   intl: ^0.19.0
   flutter_localizations:
@@ -49,54 +47,62 @@ dependencies:
   flutter_dotenv: ^5.1.0
   lottie: ^3.1.2
   auth_buttons: ^3.0.3
-  timelines: ^0.1.0
-  photo_view: ^0.15.0
-  flutter_cache_manager: ^3.4.1
-  cached_network_image: ^3.3.1
   flutter_bloc: ^8.1.6
   cached_video_player_plus: ^3.0.2
   bloc: ^8.1.4
   logger: ^2.4.0
   persistent_bottom_nav_bar: ^6.2.1
   flutter_svg: ^2.0.10+1
-  sliver_tools: ^0.2.12
   material_symbols_icons: ^4.2771.0
   just_audio: ^0.9.39
-  just_audio_cache: ^0.1.2
-  provider: ^6.1.2
   flutter_widget_from_html: ^0.15.1
-  audio_video_progress_bar: ^2.0.3
   envied: ^0.5.4+1
-  in_app_review: ^2.0.9
   device_info_plus: ^10.1.2
-  hive_ce: ^2.6.0
-  hive_ce_flutter: ^2.0.0
+  package_info_plus: ^8.1.1
+  upgrader: ^11.3.0
+  advanced_in_app_review: ^1.3.0
   path_provider: ^2.1.0
-  google_sign_in: ^6.2.1
-  google_sign_in_platform_interface: ^2.4.5
+  google_sign_in: ^6.2.2
+  # google_sign_in_platform_interface: ^2.4.5
   dio: ^5.6.0
-  shimmer: ^3.0.0
+  # shimmer: ^3.0.0
   string_similarity: ^2.1.1
   http: ^1.2.2
   encrypt_shared_preferences: ^0.7.6
-  fast_cached_network_image: ^1.2.9
-  flutter_network_image: 
   river_player: ^0.1.3
   wakelock_plus: ^1.2.8
+  back_button_interceptor: ^8.0.0
+  internet_connection_checker_plus: ^2.5.2
+  awesome_snackbar_content: ^0.1.4
+  url_launcher: ^6.3.1
+  flutter_cache_manager: ^3.4.1 
+  cached_network_image: ^3.4.1
+  skeletonizer: ^1.4.2
+  flutter_flip_card: ^0.0.6
+  country_code_picker: ^3.1.0
+  firebase_core: ^3.8.0
+  firebase_messaging: ^15.1.5
+  elegant_notification: ^2.4.0
+  webview_flutter: ^4.10.0
+  flutter_local_notifications: ^18.0.1
+  dart_jsonwebtoken: ^2.14.2
+  objectbox: ^4.0.3
+  objectbox_flutter_libs: any
 dependency_overrides:
-  flutter_widget_from_html_core: ^0.15.2 
+  flutter_widget_from_html_core: ^0.15.2
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_gen_runner: ^5.3.2
-  build_runner: ^2.4.6
+  build_runner: ^2.4.13
   json_serializable: ^6.6.1
   freezed: ^2.4.5
   flutter_lints: ^3.0.1
   analyzer: ^6.4.1
   envied_generator: ^0.5.4+1
-  hive_ce_generator: ^1.4.0
+  objectbox_generator: any
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -121,6 +127,7 @@ flutter:
     - assets/png/
     - assets/json/
     - assets/svgs/
+    - assets/webp/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

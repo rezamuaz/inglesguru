@@ -11,8 +11,8 @@ class AppBarShape extends OutlinedBorder {
       ..addRect(rect)
       ..addRRect(RRect.fromRectAndCorners(
         Rect.fromLTWH(rect.left, rect.bottom -30, rect.width, 30),
-        topLeft: Radius.circular(30),
-        topRight: Radius.circular(30),
+        topLeft: const Radius.circular(30),
+        topRight: const Radius.circular(30),
       ));
     return path;
   }

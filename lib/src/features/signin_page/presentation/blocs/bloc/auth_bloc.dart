@@ -1,17 +1,15 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive_ce/hive.dart';
-import 'package:sysbit/src/core/common/api_result.dart';
+import 'package:sysbit/src/app.dart';
 import 'package:sysbit/src/core/constant/constant.dart';
-import 'package:sysbit/src/core/local_storage/hive/hive_service.dart';
-import 'package:sysbit/src/core/local_storage/model/user_hive.dart';
+import 'package:sysbit/src/core/local_storage/model/token.dart';
+import 'package:sysbit/src/core/local_storage/model/user_data.dart';
+import 'package:sysbit/src/core/local_storage/shared_pref/shared_pref.dart';
+import 'package:sysbit/src/core/network/network.dart';
+import 'package:sysbit/src/core/utils/utils.dart';
 import 'package:sysbit/src/features/signin_page/data/model/register_req.dart';
-import 'package:sysbit/src/features/signin_page/data/model/retrive_token_req.dart';
 import 'package:sysbit/src/features/signin_page/data/model/user_auth.dart';
-import 'package:sysbit/src/features/signin_page/data/repositories/signin_repo_impl.dart';
-
+import 'package:sysbit/src/features/signin_page/domain/repository/signin_repo_impl.dart';
 import 'package:sysbit/src/features/splash_page/data/model/device_info.dart';
 
 part 'auth_event.dart';
@@ -20,76 +18,85 @@ part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(const AuthState.initial()) {
-    var preference = const HiveService();
-
     on<AuthEvent>((event, emit) async {
       await event.when(
-        signing: (user, info) async {
+        signing: (user) async {
           emit(const AuthState.loading());
-
+          //Get Device Info
+          Map<String, dynamic> deviceInfo = await Utils().getPlatformInfo();
+          String? fcmToken = "";
+          // fcmToken = await messaging.getToken();
+          var idToken = Utils.createJwt(user);
           var regis = RegisterReqMod(
-            appId: info.id,
-            idToken: user.idToken,
-            os: info.deviceOs,
-            nativeLingo: "ID",
-          );
+              appId: user.sub,
+              idToken: idToken,
+              os: deviceInfo["os"],
+              language: "id",
+              deviceInfo: deviceInfo,
+              fcmToken: fcmToken);
           // Await the registration response
           final regisResult = await SigninRepoImpl().register(regis);
           await regisResult.when(
-            success: (data) async {
-              var userHive = UserHive(
-                  id: data.id,
-                  displayName: user.displayName,
-                  email: user.email,
-                  idGoogle: user.idGoole,
-                  photoUrl: user.photoUrl,
-                  accessToken: data.accessToken,
-                  refreshToken: data.refreshToken,
-                  role: data.role);
-              // Store the user data in Hive
-              await preference.write<UserHive>(
-                  boxName: "vaultUser",
-                  key: preference.authKey,
-                  value: userHive);
+            success: (data, success, rc) async {
+              var userdata = UserData(
+                  email: user.email ?? "",
+                  userid: data.id ?? "",
+                  appId: user.sub ?? "",
+                  displayName: user.name ?? "",
+                  photoUrl: user.picture ?? "");
+              await SharedPrefs.setUser(userdata);
+
+              Token token = Token(
+                isPremium: data.role!.contains("premium"),
+                  accessToken: data.accessToken ?? "",
+                  refreshToken: data.refreshToken ?? "",
+                  accessExpiredAt: data.accessExpired ?? 0,
+                  refreshExpiredAt: data.refreshExpired ?? 0,
+                  role: data.role ?? []);
+              await SharedPrefs.setToken(token);
               // Update the user with the new token
-              emit(AuthState.isAuthorized(user: userHive));
+              emit(AuthState.isAuthorized());
             },
-            failure: (error) {
-             emit(const AuthState.unAuthorized());
+            failure: (error, msg) {
+              emit(const AuthState.unAuthorized());
             },
           );
         },
         signout: () async {
           emit(const AuthState.loading());
           googleSignIn.disconnect();
-          preference.clear<UserHive>(boxName: "vaultUser", key: "auth");
+          SharedPrefs.removeToken();
+          SharedPrefs.removeUser();
           return emit(const AuthState.unAuthorized());
         },
         checking: () async {
           emit(const AuthState.loading());
-          var isExist = await preference.isKeyExist<UserHive>(
-              boxName: "vaultUser", key: "auth");
-          var data = await preference.read<UserHive>(
-              boxName: "vaultUser", key: "auth");
-          if (isExist && data!.email!.isNotEmpty) {
-            //Renew Access Token When Open App
-            final renewAccessToken =
-                await SigninRepoImpl().retrivedToken(data.refreshToken!);
-            return renewAccessToken.when(
-              success: (result) async {
-                var newData = data.copyWith(accessToken: result.accessToken);
-                await preference.write<UserHive>(
-                    boxName: "vaultUser",
-                    key: preference.authKey,
-                    value: newData);
-             return emit(AuthState.isAuthorized(user: newData));  
-              },
-              failure: (error) {
-                 googleSignIn.disconnect();
-                  preference.clear<UserHive>(boxName: "vaultUser", key: "auth");
-              return  emit(const AuthState.unAuthorized());
-              },
-            );
+          var token = await SharedPrefs.getToken();
+          if (token != null && token.refreshToken.isNotEmpty) {
+            final hasConnected = await Network.connection.hasInternetAccess;
+            if (hasConnected) {
+              //Renew Access Token When Open App
+              final renewAccessToken =
+                  await SigninRepoImpl().retrivedToken(token.refreshToken);
+              return renewAccessToken.when(
+                success: (result, success, rc) async {
+                  var newData = token.copyWith(
+                      accessToken: result.accessToken ?? "",
+                      accessExpiredAt: result.accessExpired ?? 0,
+                      isPremium: token.role.contains("premium"),
+                      role: token.role);
+                  SharedPrefs.setToken(newData);
+                  return emit(AuthState.isAuthorized());
+                },
+                failure: (error, msg) {
+                  googleSignIn.disconnect();
+                  SharedPrefs.removeToken();
+                  SharedPrefs.removeUser();
+                  return emit(const AuthState.unAuthorized());
+                },
+              );
+            }
+            return emit(AuthState.isAuthorized());
           }
           return emit(const AuthState.unAuthorized());
         },
@@ -98,13 +105,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
   @override
   void onChange(Change<AuthState> change) {
-    print(change);
     super.onChange(change);
+    logger.d(change);
   }
 
   @override
   void onEvent(AuthEvent event) {
-    print(event);
     super.onEvent(event);
+    logger.d(event);
   }
 }

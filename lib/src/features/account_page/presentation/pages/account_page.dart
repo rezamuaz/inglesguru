@@ -1,10 +1,8 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sysbit/src/features/account_page/presentation/widget/account_info.dart';
 import 'package:sysbit/src/features/account_page/presentation/widget/account_menu.dart';
-import 'package:sysbit/src/features/signin_page/presentation/blocs/bloc/auth_bloc.dart';
-import 'package:sysbit/src/features/signin_page/presentation/pages/signin_page.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -14,6 +12,9 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +33,18 @@ class _AccountPageState extends State<AccountPage> {
                     ))),
           ],
         ),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.share))],
+        actions: [CountryCodePicker(
+                  onChanged: (element) => debugPrint(element.code),
+                  initialSelection: 'ID',
+                  showCountryOnly: true,
+                  countryFilter: const ["ID"],
+                  showOnlyCountryWhenClosed: true,
+                 
+                  favorite: const ['+62', 'ID'],
+                  hideSearch: true,
+                  hideMainText: true,
+
+                ),],
       ),
       body: const SingleChildScrollView(
           physics: BouncingScrollPhysics(),
@@ -43,7 +55,7 @@ class _AccountPageState extends State<AccountPage> {
               child: AccountInfo(),
             ),Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: AccountMenu(),
+              child: AccountMenu(color: Colors.black87,),
             )],
           )),
     );

@@ -28,6 +28,10 @@ mixin _$TokenResp {
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "role", defaultValue: [])
   List<String>? get role => throw _privateConstructorUsedError;
+  @JsonKey(name: "access_expired_at", defaultValue: 0)
+  int? get accessExpired => throw _privateConstructorUsedError;
+  @JsonKey(name: "refresh_expired_at", defaultValue: 0)
+  int? get refreshExpired => throw _privateConstructorUsedError;
 
   /// Serializes this TokenResp to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +52,10 @@ abstract class $TokenRespCopyWith<$Res> {
       {@JsonKey(name: "access_token", defaultValue: "") String? accessToken,
       @JsonKey(name: "refresh_token", defaultValue: "") String? refreshToken,
       @JsonKey(name: "id", defaultValue: "") String? id,
-      @JsonKey(name: "role", defaultValue: []) List<String>? role});
+      @JsonKey(name: "role", defaultValue: []) List<String>? role,
+      @JsonKey(name: "access_expired_at", defaultValue: 0) int? accessExpired,
+      @JsonKey(name: "refresh_expired_at", defaultValue: 0)
+      int? refreshExpired});
 }
 
 /// @nodoc
@@ -70,6 +77,8 @@ class _$TokenRespCopyWithImpl<$Res, $Val extends TokenResp>
     Object? refreshToken = freezed,
     Object? id = freezed,
     Object? role = freezed,
+    Object? accessExpired = freezed,
+    Object? refreshExpired = freezed,
   }) {
     return _then(_value.copyWith(
       accessToken: freezed == accessToken
@@ -88,6 +97,14 @@ class _$TokenRespCopyWithImpl<$Res, $Val extends TokenResp>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      accessExpired: freezed == accessExpired
+          ? _value.accessExpired
+          : accessExpired // ignore: cast_nullable_to_non_nullable
+              as int?,
+      refreshExpired: freezed == refreshExpired
+          ? _value.refreshExpired
+          : refreshExpired // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -104,7 +121,10 @@ abstract class _$$TokenRespImplCopyWith<$Res>
       {@JsonKey(name: "access_token", defaultValue: "") String? accessToken,
       @JsonKey(name: "refresh_token", defaultValue: "") String? refreshToken,
       @JsonKey(name: "id", defaultValue: "") String? id,
-      @JsonKey(name: "role", defaultValue: []) List<String>? role});
+      @JsonKey(name: "role", defaultValue: []) List<String>? role,
+      @JsonKey(name: "access_expired_at", defaultValue: 0) int? accessExpired,
+      @JsonKey(name: "refresh_expired_at", defaultValue: 0)
+      int? refreshExpired});
 }
 
 /// @nodoc
@@ -124,6 +144,8 @@ class __$$TokenRespImplCopyWithImpl<$Res>
     Object? refreshToken = freezed,
     Object? id = freezed,
     Object? role = freezed,
+    Object? accessExpired = freezed,
+    Object? refreshExpired = freezed,
   }) {
     return _then(_$TokenRespImpl(
       accessToken: freezed == accessToken
@@ -142,6 +164,14 @@ class __$$TokenRespImplCopyWithImpl<$Res>
           ? _value._role
           : role // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      accessExpired: freezed == accessExpired
+          ? _value.accessExpired
+          : accessExpired // ignore: cast_nullable_to_non_nullable
+              as int?,
+      refreshExpired: freezed == refreshExpired
+          ? _value.refreshExpired
+          : refreshExpired // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -153,7 +183,10 @@ class _$TokenRespImpl implements _TokenResp {
       {@JsonKey(name: "access_token", defaultValue: "") this.accessToken,
       @JsonKey(name: "refresh_token", defaultValue: "") this.refreshToken,
       @JsonKey(name: "id", defaultValue: "") this.id,
-      @JsonKey(name: "role", defaultValue: []) final List<String>? role})
+      @JsonKey(name: "role", defaultValue: []) final List<String>? role,
+      @JsonKey(name: "access_expired_at", defaultValue: 0) this.accessExpired,
+      @JsonKey(name: "refresh_expired_at", defaultValue: 0)
+      this.refreshExpired})
       : _role = role;
 
   factory _$TokenRespImpl.fromJson(Map<String, dynamic> json) =>
@@ -180,8 +213,15 @@ class _$TokenRespImpl implements _TokenResp {
   }
 
   @override
+  @JsonKey(name: "access_expired_at", defaultValue: 0)
+  final int? accessExpired;
+  @override
+  @JsonKey(name: "refresh_expired_at", defaultValue: 0)
+  final int? refreshExpired;
+
+  @override
   String toString() {
-    return 'TokenResp(accessToken: $accessToken, refreshToken: $refreshToken, id: $id, role: $role)';
+    return 'TokenResp(accessToken: $accessToken, refreshToken: $refreshToken, id: $id, role: $role, accessExpired: $accessExpired, refreshExpired: $refreshExpired)';
   }
 
   @override
@@ -194,13 +234,23 @@ class _$TokenRespImpl implements _TokenResp {
             (identical(other.refreshToken, refreshToken) ||
                 other.refreshToken == refreshToken) &&
             (identical(other.id, id) || other.id == id) &&
-            const DeepCollectionEquality().equals(other._role, _role));
+            const DeepCollectionEquality().equals(other._role, _role) &&
+            (identical(other.accessExpired, accessExpired) ||
+                other.accessExpired == accessExpired) &&
+            (identical(other.refreshExpired, refreshExpired) ||
+                other.refreshExpired == refreshExpired));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken, id,
-      const DeepCollectionEquality().hash(_role));
+  int get hashCode => Object.hash(
+      runtimeType,
+      accessToken,
+      refreshToken,
+      id,
+      const DeepCollectionEquality().hash(_role),
+      accessExpired,
+      refreshExpired);
 
   /// Create a copy of TokenResp
   /// with the given fields replaced by the non-null parameter values.
@@ -220,13 +270,16 @@ class _$TokenRespImpl implements _TokenResp {
 
 abstract class _TokenResp implements TokenResp {
   factory _TokenResp(
-          {@JsonKey(name: "access_token", defaultValue: "")
-          final String? accessToken,
-          @JsonKey(name: "refresh_token", defaultValue: "")
-          final String? refreshToken,
-          @JsonKey(name: "id", defaultValue: "") final String? id,
-          @JsonKey(name: "role", defaultValue: []) final List<String>? role}) =
-      _$TokenRespImpl;
+      {@JsonKey(name: "access_token", defaultValue: "")
+      final String? accessToken,
+      @JsonKey(name: "refresh_token", defaultValue: "")
+      final String? refreshToken,
+      @JsonKey(name: "id", defaultValue: "") final String? id,
+      @JsonKey(name: "role", defaultValue: []) final List<String>? role,
+      @JsonKey(name: "access_expired_at", defaultValue: 0)
+      final int? accessExpired,
+      @JsonKey(name: "refresh_expired_at", defaultValue: 0)
+      final int? refreshExpired}) = _$TokenRespImpl;
 
   factory _TokenResp.fromJson(Map<String, dynamic> json) =
       _$TokenRespImpl.fromJson;
@@ -243,6 +296,12 @@ abstract class _TokenResp implements TokenResp {
   @override
   @JsonKey(name: "role", defaultValue: [])
   List<String>? get role;
+  @override
+  @JsonKey(name: "access_expired_at", defaultValue: 0)
+  int? get accessExpired;
+  @override
+  @JsonKey(name: "refresh_expired_at", defaultValue: 0)
+  int? get refreshExpired;
 
   /// Create a copy of TokenResp
   /// with the given fields replaced by the non-null parameter values.

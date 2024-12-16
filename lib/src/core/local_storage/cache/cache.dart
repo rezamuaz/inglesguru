@@ -1,75 +1,142 @@
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
-
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
-import 'package:sysbit/src/core/local_storage/hive/hive_service.dart';
-import 'package:sysbit/src/core/local_storage/model/file_cache.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class UnicornCache {
   UnicornCache();
-  
-  static Future<File?> getFile({String? url}) async {
-   
-    var preference = const HiveService();
-    if (url != null) {
-      var cache =
-          await preference.read<CacheHive>(boxName: "vaultCache", key: url);
-      Directory documentDirectory = await getApplicationDocumentsDirectory();
+  static const key = 'customCacheKey';
+  static CacheManager instance = CacheManager(
+    Config(
+      key,
+      maxNrOfCacheObjects: 1000,
+      repo: JsonCacheInfoRepository(databaseName: key),
+      fileSystem: IOFileSystem(key),
+      fileService: HttpFileService(),
+    ),
+  );
+
+  // Future<File?> getFilesCacheNoProgress(
+  //     {required String url,
+  //     bool withProgress = false,
+  //     Function(double)? progress}) async {
+  //   final dio = Dio();
+
+  //   var preference = const HiveService();
+  //   var cache =
+  //       await preference.read<CacheHive>(boxName: "vaultCache", key: url);
+  //   Directory directory = await getApplicationCacheDirectory();
+  //   String filename = path.basename(url);
+
+  //   String filePath = path.join(directory.path, filename);
+  //   try {
+  //     //File exist in cache
+  //     if (cache != null && cache.location.isNotEmpty) {
+  //       File file = File(filePath);
+  //       //Return file when exist
+  //       if (file.existsSync()) {
+  //         return file;
+  //         // Download nonexist file
+  //       } else {
+  //         try {
+  //           await preference.deleteKey<CacheHive>(
+  //               boxName: "vaultCache", key: url);
+  //           var response = await dio.get(url,
+  //               options: Options(
+  //                 responseType: ResponseType.bytes,
+  //                 receiveTimeout: const Duration(seconds: 15),
+  //               ));
+
+  //           //Save when status ok
+  //           if (response.statusCode == 200) {
+  //             await file.writeAsBytes(response.data);
+  //             //Check FileExist
+
+  //             await const HiveService().write<CacheHive>(
+  //                 boxName: "vaultCache",
+  //                 key: url,
+  //                 value: CacheHive(location: filename, etag: "", updatedAt: 0));
+  //             return file;
+  //           } else {
+  //             throw Exception(
+  //                 'Failed to download file: ${response.statusCode}');
+  //           }
+  //         } catch (e) {
+  //           if (kDebugMode) {
+  //             print("Error: $e");
+  //           }
+  //           return Future.error(e); // Return null if there was an error
+  //         }
+  //       }
+  //       //File nonexist in cache
+  //     } else {
+  //       //File Not Available in cache
+  //       Directory directory = await getApplicationCacheDirectory();
+  //       String filename = path.basename(url);
+
+  //       String filePath = path.join(directory.path, filename);
+
+  //       try {
+  //         var response = await dio.get(
+  //           url,
+  //           options: Options(
+  //             responseType: ResponseType.bytes,
+  //             receiveTimeout: const Duration(seconds: 15),
+  //           ),
+  //         );
+  //         if (response.statusCode == 200) {
+  //           File file = File(filePath);
+  //           await file.writeAsBytes(response.data);
+  //           //Check FileExist
+
+  //           await const HiveService().write<CacheHive>(
+  //               boxName: "vaultCache",
+  //               key: url,
+  //               value: CacheHive(location: filename, etag: "", updatedAt: 0));
+  //           return file;
+  //         } else {
+  //           throw Exception('Failed to download file: ${response.statusCode}');
+  //         }
+  //       } catch (e) {
+  //         return Future.error(e); // Return null if there was an error
+  //       }
+  //     }
+  //   } catch (e) {
+  //     throw Exception("Error accessing file: $e");
+  //   }
+  // }
+
+  Future<File?> getFilesCacheManager({
+    required String url,
+  }) async {
+    FileInfo? cache = await instance.getFileFromCache(key);
+    try {
+      //File exist in cache
       if (cache != null) {
-       
-        File file = File(cache.location!);
-        if (await file.exists()) {
-        
-          // Return the content of the file
-          return file;
+        //Return file when exist
+        if (cache.file.existsSync()) {
+          return cache.file;
+          // Download nonexist file
         } else {
           try {
-            var response = await http.get(Uri.parse(url));
-            if (response.statusCode == 200) {
-              // Write the downloaded file to local storage
-              await file.writeAsBytes(response.bodyBytes);
-              // Optionally, update the cache location
-              // cache.location = filePath; // Uncomment if needed
-              // await preference.write<CacheHive>(boxName: "vaultCache", key: url, value: cache); // Uncomment to save updated cache
-              return file;
-            } else {
-              throw Exception(
-                  'Failed to download file: ${response.statusCode}');
-            }
+            return await instance.getSingleFile(url);
           } catch (e) {
-            return null; // Return null if there was an error
+            return Future.error(e); // Return null if there was an error
           }
         }
+        //File nonexist in cache
       } else {
         try {
-          var response = await http.get(Uri.parse(url));
-          if (response.statusCode == 200) {
-            String filepath =
-                path.join(documentDirectory.path, path.basename(url));
-            File file = File(filepath);
-            // Write the downloaded file to local storage
-            await file.writeAsBytes(response.bodyBytes);
-            CacheHive value = CacheHive(
-              location: filepath,
-              createdAt: DateTime.now().toUtc().millisecondsSinceEpoch,
-            );
-            await preference.write<CacheHive>(
-                boxName: "vaultCache", key: url, value: value);
-            // Optionally, update the cache location
-            // cache.location = filePath; // Uncomment if needed
-            // await preference.write<CacheHive>(boxName: "vaultCache", key: url, value: cache); // Uncomment to save updated cache
-            return file;
-          } else {
-            throw Exception('Failed to download file: ${response.statusCode}');
-          }
+          return await instance.getSingleFile(url);
         } catch (e) {
-          return null; // Return null if there was an error
+          return Future.error(e); // Return null if there was an error
         }
       }
+    } catch (e) {
+      throw Exception("Error accessing file: $e");
     }
-    return null;
   }
 }

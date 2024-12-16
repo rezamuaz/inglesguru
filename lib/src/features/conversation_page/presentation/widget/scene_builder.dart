@@ -1,18 +1,14 @@
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:speech_to_text/speech_to_text.dart';
-import 'package:sysbit/src/core/constant/constant.dart';
+import 'package:sysbit/src/core/local_storage/object_box/progress_repository.dart';
 import 'package:sysbit/src/features/conversation_page/data/model/lesson_data.dart';
-import 'package:sysbit/src/features/conversation_page/presentation/blocs/speech_checker_bloc.dart';
 import 'package:sysbit/src/features/conversation_page/presentation/cubit/speech_text_cubit.dart';
 import 'package:sysbit/src/features/conversation_page/presentation/widget/character_widget.dart';
 import 'package:sysbit/src/features/conversation_page/presentation/widget/nav_and_record.dart';
 import 'package:sysbit/src/features/conversation_page/presentation/widget/bottom_sheet/recorder_bottom_sheet.dart';
-import 'package:sysbit/src/features/tutorial_page/presentation/pages/tutorial_page.dart';
-import 'package:sysbit/src/features/lessons_page/presentation/blocs/bloc/lesson_bloc.dart';
 
 class SceneBuilderWidget extends StatefulWidget {
   const SceneBuilderWidget(
@@ -23,7 +19,10 @@ class SceneBuilderWidget extends StatefulWidget {
       required this.steps,
       required this.lastWords,
       required this.pageLength,
-      required this.lessonId});
+      required this.lessonCode,
+      required this.pageNumber,
+      required this.isBack,
+      required this.totalPage});
 
   ///Contains step data
   final List<LessonStep>? steps;
@@ -32,7 +31,10 @@ class SceneBuilderWidget extends StatefulWidget {
   final Function() prevPage;
   final int pageLength;
   final int currentPage;
-  final String lessonId;
+  final String lessonCode;
+  final bool isBack;
+  final String pageNumber;
+  final String totalPage;
 
   @override
   State<SceneBuilderWidget> createState() => _SceneBuilderWidgetState();
@@ -40,24 +42,20 @@ class SceneBuilderWidget extends StatefulWidget {
 
 class _SceneBuilderWidgetState extends State<SceneBuilderWidget>
     with TickerProviderStateMixin {
-  bool transform = false;
   late AnimationController _controller;
-  final SpeechToText speech = SpeechToText();
-  late AudioPlayer player = AudioPlayer();
-
   bool showBottomSheet = false;
   PersistentBottomSheetController? _bottomSheetController;
 
   // Show BottomSheet Widget for Talking
-  _showBottom() {
+  _showBottom({required String voiceUrl, required String originText}) {
     if (!showBottomSheet) {
       _bottomSheetController = Scaffold.of(context).showBottomSheet(
         backgroundColor: Colors.transparent,
         enableDrag: false,
         (context) {
           return RecorderBottomSheet(
-            voiceUrl: "${Constant.storageBaseUrl}/V${widget.lessonId}${widget.currentPage.toString().padLeft(2,"0")}.ogg" ?? "",
-            originText: widget.steps?[1].contents?.primaryLang,
+            voiceUrl: voiceUrl,
+            originText: originText,
           );
         },
       );
@@ -75,15 +73,11 @@ class _SceneBuilderWidgetState extends State<SceneBuilderWidget>
       duration: const Duration(milliseconds: 2000),
       vsync: this,
     );
-    init();
+    
+    if(widget.pageNumber == "8"){
+      context.read<ProgressRepository>().addProgress(widget.lessonCode,conversation: true);
+    }
     super.initState();
-  }
-
-  Future<void> init() async {
-    player.playbackEventStream.listen((event) {},
-        onError: (Object e, StackTrace stackTrace) {
-      print('A stream error occurred: $e');
-    });
   }
 
   @override
@@ -103,112 +97,92 @@ class _SceneBuilderWidgetState extends State<SceneBuilderWidget>
 
   @override
   void dispose() {
-    stopListening();
     _controller.dispose();
-    player.dispose();
     super.dispose();
-  }
-
-  stopListening() async {
-    await speech.cancel();
-    await speech.stop();
-  }
-
-  playVoice(String url) async {
-    await player.setUrl(url);
-    player.play();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SpeechCheckerBloc, SpeechCheckerState>(
-      listener: (context, state) {
-        state.whenOrNull(
-          loaded: (data) {
-            if (data.isCorrect && widget.currentPage < widget.pageLength - 1) {
-              Future.delayed(const Duration(milliseconds: 2500),
-                  () => _bottomSheetController!.close()).whenComplete(
-                () => Future.delayed(
-                  const Duration(milliseconds: 500),
-                  () => widget.nextPage(),
-                ),
-              );
-            } else if (data.isCorrect &&
-                widget.currentPage == widget.pageLength - 1) {
-              Future.delayed(const Duration(milliseconds: 2500),
-                  () => _bottomSheetController!.close()).whenComplete(
-                () => Future.delayed(
-                  const Duration(milliseconds: 500),
-                  () {
-                    //Push to new page when reach last page
-                    if (mounted) {
-                      Navigator.of(context).push(_createRoute(widget.lessonId));
-                    }
-                  },
-                ),
-              );
-            }
-          },
-        );
-      },
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              CharacterWidget(
-                playAudio: () async {
-                  await playVoice(widget.steps![0].assets?.voice ?? "");
-                },
-                image: widget.steps![0].assets?.image ?? "",
-                eng: widget.steps![0].contents?.primaryLang ?? "",
-                ind: widget.steps![0].contents?.secondaryLang ?? "",
-              ),
-              const SizedBox(height: 40),
-              CharacterWidget(
-                playAudio: () async {
-                  await playVoice(widget.steps![1].assets?.voice ?? "");
-                },
-                isLeftAlign: false,
-                image: widget.steps![1].assets?.image ?? "",
-                eng: widget.steps![1].contents?.primaryLang ?? "",
-                ind: widget.steps![1].contents?.secondaryLang ?? "",
-                lastWord: widget.lastWords,
-              ),
-            ],
-          ),
-          Positioned(
-              bottom: 0,
-              child: NavAndRecord(
-                record: () {
-                  _showBottom();
-                },
-                controller: _controller,
-                curretPage: widget.currentPage,
-                nextPage: widget.nextPage,
-                prevPage: widget.prevPage,
-              ))
-        ],
-      ),
+    return Stack(
+      children: [
+        Column(
+          children: [
+            //First Character
+            CharacterWidget(
+              switchDialog: () {
+                if (_bottomSheetController != null) {
+                  _bottomSheetController!.close();
+                }
+            
+                final SpeechTextCubit textCubit =
+                    BlocProvider.of<SpeechTextCubit>(context);
+                textCubit.change(
+                    newText: widget.steps?[0].contents?.primaryLang);
+                _showBottom(
+                    voiceUrl: widget.steps![0].assets?.voice ?? "",
+                    originText: widget.steps?[0].contents?.primaryLang ?? "");
+              },
+              voiceUrl: widget.steps![0].assets?.voice ?? "",
+              image: widget.steps![0].assets?.image ?? "",
+              eng: widget.steps![0].contents?.primaryLang ?? "",
+              ind: widget.steps![0].contents?.secondaryLang ?? "",
+            ),
+            const SizedBox(height: 40),
+            //Second Character
+            CharacterWidget(
+              switchDialog: () {
+                if (_bottomSheetController != null) {
+                  _bottomSheetController!.close();
+                }
+                final SpeechTextCubit textCubit =
+                    BlocProvider.of<SpeechTextCubit>(context);
+                textCubit.change(
+                    newText: widget.steps?[1].contents?.primaryLang);
+                _showBottom(
+                    voiceUrl: widget.steps![1].assets?.voice ?? "",
+                    originText: widget.steps?[1].contents?.primaryLang ?? "");
+              },
+              voiceUrl: widget.steps![1].assets?.voice ?? "",
+              isLeftAlign: false,
+              image: widget.steps![1].assets?.image ?? "",
+              eng: widget.steps![1].contents?.primaryLang ?? "",
+              ind: widget.steps![1].contents?.secondaryLang ?? "",
+              lastWord: widget.lastWords,
+            ),
+          ],
+        ),
+        
+        // Positioned(
+        //       top: 10,
+        //       right: 20,
+        //       child: IconButton(onPressed:  () {
+                    
+        //           }, icon: Icon(Icons.more_vert,color: Colors.black87,)),
+        //     ),
+        //Show Bottom Sheet Dialog for Record
+        Positioned(
+            bottom: 0,
+            child: NavAndRecord(
+              totalPage: widget.totalPage,
+              pageNumber: widget.pageNumber,
+              record: () {
+                final SpeechTextCubit textCubit =
+                    BlocProvider.of<SpeechTextCubit>(context);
+                textCubit.change(
+                    newText: widget.steps?[1].contents?.primaryLang);
+                _showBottom(
+                    voiceUrl: widget.steps![1].assets?.voice ?? "",
+                    originText: widget.steps?[1].contents?.primaryLang ?? "");
+              },
+              isback: widget.isBack,
+              controller: _controller,
+              curretPage: widget.currentPage,
+              nextPage: widget.nextPage,
+              prevPage: widget.prevPage,
+            ),
+            ),
+            
+      ],
     );
   }
-}
-
-Route _createRoute(String lessonId) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => TutorialPage(
-      lessonId: lessonId,
-    ),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.0, 0.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
 }

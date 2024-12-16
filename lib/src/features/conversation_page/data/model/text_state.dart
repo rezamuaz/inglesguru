@@ -8,10 +8,9 @@ part 'text_state.freezed.dart';
 @freezed
 class TextState with _$TextState {
   factory TextState(
-      { final String? text,
-      
-       final Color? textColor,@Default(false) final bool isCorrect,@Default(false) final bool init}) = _TextState;
-  
+      {final String? origintext,
+        final String? text,
+      final Color? textColor,
+      @Default(false) final bool isCorrect,
+      @Default(false) final bool init}) = _TextState;
 }
-
-

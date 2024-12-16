@@ -52,49 +52,33 @@ class $AssetsJsonGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
-  /// File path: assets/lottie/welcome.json
-  String get welcome => 'assets/lottie/welcome.json';
+  /// File path: assets/lottie/disconnected.json
+  String get disconnected => 'assets/lottie/disconnected.json';
+
+  /// File path: assets/lottie/error.json
+  String get error => 'assets/lottie/error.json';
 
   /// List of all assets
-  List<String> get values => [welcome];
-}
-
-class $AssetsPngGen {
-  const $AssetsPngGen();
-
-  /// File path: assets/png/Asset 1@4x.png
-  AssetGenImage get asset14x =>
-      const AssetGenImage('assets/png/Asset 1@4x.png');
-
-  /// File path: assets/png/Asset 2@4x.png
-  AssetGenImage get asset24x =>
-      const AssetGenImage('assets/png/Asset 2@4x.png');
-
-  /// File path: assets/png/Asset 3@4x.png
-  AssetGenImage get asset34x =>
-      const AssetGenImage('assets/png/Asset 3@4x.png');
-
-  /// File path: assets/png/Asset 4@4x.png
-  AssetGenImage get asset44x =>
-      const AssetGenImage('assets/png/Asset 4@4x.png');
-
-  /// File path: assets/png/airport_scene.jpeg
-  AssetGenImage get airportScene =>
-      const AssetGenImage('assets/png/airport_scene.jpeg');
-
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [asset14x, asset24x, asset34x, asset44x, airportScene];
+  List<String> get values => [disconnected, error];
 }
 
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
+
+  /// File path: assets/svgs/ai.svg
+  String get ai => 'assets/svgs/ai.svg';
+
+  /// File path: assets/svgs/black_lock.svg
+  String get blackLock => 'assets/svgs/black_lock.svg';
 
   /// File path: assets/svgs/bronze.svg
   String get bronze => 'assets/svgs/bronze.svg';
 
   /// File path: assets/svgs/cross.svg
   String get cross => 'assets/svgs/cross.svg';
+
+  /// File path: assets/svgs/dotlogo2.svg
+  String get dotlogo2 => 'assets/svgs/dotlogo2.svg';
 
   /// File path: assets/svgs/error_image.svg
   String get errorImage => 'assets/svgs/error_image.svg';
@@ -108,15 +92,45 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/logo.svg
   String get logo => 'assets/svgs/logo.svg';
 
-  /// File path: assets/svgs/master.m3u8
-  String get master => 'assets/svgs/master.m3u8';
+  /// File path: assets/svgs/logo2.svg
+  String get logo2 => 'assets/svgs/logo2.svg';
 
   /// File path: assets/svgs/silver.svg
   String get silver => 'assets/svgs/silver.svg';
 
   /// List of all assets
-  List<String> get values =>
-      [bronze, cross, errorImage, gold, lock, logo, master, silver];
+  List<String> get values => [
+        ai,
+        blackLock,
+        bronze,
+        cross,
+        dotlogo2,
+        errorImage,
+        gold,
+        lock,
+        logo,
+        logo2,
+        silver
+      ];
+}
+
+class $AssetsWebpGen {
+  const $AssetsWebpGen();
+
+  /// File path: assets/webp/advance_pac.webp
+  AssetGenImage get advancePac =>
+      const AssetGenImage('assets/webp/advance_pac.webp');
+
+  /// File path: assets/webp/exams_pac.webp
+  AssetGenImage get examsPac =>
+      const AssetGenImage('assets/webp/exams_pac.webp');
+
+  /// File path: assets/webp/starter_pac.webp
+  AssetGenImage get starterPac =>
+      const AssetGenImage('assets/webp/starter_pac.webp');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [advancePac, examsPac, starterPac];
 }
 
 class Assets {
@@ -124,8 +138,8 @@ class Assets {
 
   static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
-  static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
+  static const $AssetsWebpGen webp = $AssetsWebpGen();
 }
 
 class AssetGenImage {

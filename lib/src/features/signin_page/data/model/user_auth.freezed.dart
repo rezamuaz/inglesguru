@@ -20,12 +20,10 @@ UserAuth _$UserAuthFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserAuth {
-  String? get idToken => throw _privateConstructorUsedError;
-  String? get idGoole => throw _privateConstructorUsedError;
-  String? get displayName => throw _privateConstructorUsedError;
-  String? get photoUrl => throw _privateConstructorUsedError;
+  String? get sub => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  String? get token => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get picture => throw _privateConstructorUsedError;
 
   /// Serializes this UserAuth to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,13 +40,7 @@ abstract class $UserAuthCopyWith<$Res> {
   factory $UserAuthCopyWith(UserAuth value, $Res Function(UserAuth) then) =
       _$UserAuthCopyWithImpl<$Res, UserAuth>;
   @useResult
-  $Res call(
-      {String? idToken,
-      String? idGoole,
-      String? displayName,
-      String? photoUrl,
-      String? email,
-      String? token});
+  $Res call({String? sub, String? email, String? name, String? picture});
 }
 
 /// @nodoc
@@ -66,37 +58,27 @@ class _$UserAuthCopyWithImpl<$Res, $Val extends UserAuth>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? idToken = freezed,
-    Object? idGoole = freezed,
-    Object? displayName = freezed,
-    Object? photoUrl = freezed,
+    Object? sub = freezed,
     Object? email = freezed,
-    Object? token = freezed,
+    Object? name = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_value.copyWith(
-      idToken: freezed == idToken
-          ? _value.idToken
-          : idToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      idGoole: freezed == idGoole
-          ? _value.idGoole
-          : idGoole // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoUrl: freezed == photoUrl
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
+      sub: freezed == sub
+          ? _value.sub
+          : sub // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      picture: freezed == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -110,13 +92,7 @@ abstract class _$$UserAuthImplCopyWith<$Res>
       __$$UserAuthImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? idToken,
-      String? idGoole,
-      String? displayName,
-      String? photoUrl,
-      String? email,
-      String? token});
+  $Res call({String? sub, String? email, String? name, String? picture});
 }
 
 /// @nodoc
@@ -132,37 +108,27 @@ class __$$UserAuthImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? idToken = freezed,
-    Object? idGoole = freezed,
-    Object? displayName = freezed,
-    Object? photoUrl = freezed,
+    Object? sub = freezed,
     Object? email = freezed,
-    Object? token = freezed,
+    Object? name = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_$UserAuthImpl(
-      idToken: freezed == idToken
-          ? _value.idToken
-          : idToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      idGoole: freezed == idGoole
-          ? _value.idGoole
-          : idGoole // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoUrl: freezed == photoUrl
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
+      sub: freezed == sub
+          ? _value.sub
+          : sub // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      picture: freezed == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -171,33 +137,23 @@ class __$$UserAuthImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserAuthImpl implements _UserAuth {
-  _$UserAuthImpl(
-      {this.idToken,
-      this.idGoole,
-      this.displayName,
-      this.photoUrl,
-      this.email,
-      this.token});
+  _$UserAuthImpl({this.sub, this.email, this.name, this.picture});
 
   factory _$UserAuthImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserAuthImplFromJson(json);
 
   @override
-  final String? idToken;
-  @override
-  final String? idGoole;
-  @override
-  final String? displayName;
-  @override
-  final String? photoUrl;
+  final String? sub;
   @override
   final String? email;
   @override
-  final String? token;
+  final String? name;
+  @override
+  final String? picture;
 
   @override
   String toString() {
-    return 'UserAuth(idToken: $idToken, idGoole: $idGoole, displayName: $displayName, photoUrl: $photoUrl, email: $email, token: $token)';
+    return 'UserAuth(sub: $sub, email: $email, name: $name, picture: $picture)';
   }
 
   @override
@@ -205,20 +161,15 @@ class _$UserAuthImpl implements _UserAuth {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserAuthImpl &&
-            (identical(other.idToken, idToken) || other.idToken == idToken) &&
-            (identical(other.idGoole, idGoole) || other.idGoole == idGoole) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName) &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
+            (identical(other.sub, sub) || other.sub == sub) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.picture, picture) || other.picture == picture));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, idToken, idGoole, displayName, photoUrl, email, token);
+  int get hashCode => Object.hash(runtimeType, sub, email, name, picture);
 
   /// Create a copy of UserAuth
   /// with the given fields replaced by the non-null parameter values.
@@ -238,28 +189,22 @@ class _$UserAuthImpl implements _UserAuth {
 
 abstract class _UserAuth implements UserAuth {
   factory _UserAuth(
-      {final String? idToken,
-      final String? idGoole,
-      final String? displayName,
-      final String? photoUrl,
+      {final String? sub,
       final String? email,
-      final String? token}) = _$UserAuthImpl;
+      final String? name,
+      final String? picture}) = _$UserAuthImpl;
 
   factory _UserAuth.fromJson(Map<String, dynamic> json) =
       _$UserAuthImpl.fromJson;
 
   @override
-  String? get idToken;
-  @override
-  String? get idGoole;
-  @override
-  String? get displayName;
-  @override
-  String? get photoUrl;
+  String? get sub;
   @override
   String? get email;
   @override
-  String? get token;
+  String? get name;
+  @override
+  String? get picture;
 
   /// Create a copy of UserAuth
   /// with the given fields replaced by the non-null parameter values.
