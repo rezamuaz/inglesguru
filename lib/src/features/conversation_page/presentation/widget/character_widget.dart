@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_cache/just_audio_cache.dart';
 import 'package:sysbit/src/core/local_storage/cache/cache.dart';
 import 'package:sysbit/src/features/conversation_page/presentation/widget/bubble_box.dart';
 
@@ -132,15 +133,7 @@ class _CharacterWidgetState extends State<CharacterWidget>
                   constrain: constraints,
                   audioDownlading: audioDownloading,
                   playAudio: () async {
-                    setState(() {
-                      audioDownloading = true;
-                    });
-                    var data = await UnicornCache()
-                        .getFilesCacheManager(url: widget.voiceUrl);
-                    setState(() {
-                      audioDownloading = false;
-                    });
-                    await player.setFilePath(data!.path);
+                    await player.dynamicSet(url: widget.voiceUrl);
                     player.play();
                   },
                   isLeftAlign: widget.isLeftAlign,

@@ -12,6 +12,7 @@ import 'package:sysbit/src/core/common/error_widget_return.dart';
 import 'package:sysbit/src/core/local_storage/key_storage/key_storage.dart';
 
 import 'package:sysbit/src/core/utils/utils.dart';
+import 'package:sysbit/src/features/common/widget/page_wrapper.dart';
 import 'package:sysbit/src/features/home_page/presentation/widget/payment_bottom.dart';
 import 'package:sysbit/src/features/introduction_page/presentation/pages/introduction_page.dart';
 import 'package:sysbit/src/features/lesson_menu_page/presentation/pages/lesson_menu_page.dart';
@@ -47,92 +48,19 @@ class _StarterLessonsPageState extends State<StarterLessonsPage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => LessonBloc()..add(const LessonEvent.started()),
+          create: (context) => LessonBloc()..add(const LessonEvent.starterPack()),
         ),
       ],
       child: Builder(builder: (context) {
         return Scaffold(
             backgroundColor: Colors.amber,
-            body: Column(
-              children: [
-                
-                Container(
-                    height: MediaQuery.of(context).size.height * 0.18,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(color: Colors.transparent),
-                    padding:
-                        const EdgeInsets.only(top: 20, left: 30, right: 30),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.svgs.logo,
-                              width: 45,
-                              height: 45,
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Container(
-                              constraints: BoxConstraints(
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width * 0.6),
-                              child: Text(
-                                  overflow: TextOverflow.ellipsis,
-                                  "Ingles Guru".toUpperCase(),
-                                  textAlign: TextAlign.left,
-                                  style: GoogleFonts.inter(
-                                    letterSpacing: 1.2,
-                                    wordSpacing: 1.2,
-                                    fontSize: 30,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ),
-                          ],
-                        ),
-                        
-                      ],
-                    )),
-                
-                Expanded(
-                  child: Container(
-                      padding: const EdgeInsets.only(
-                          bottom: 20, left: 10, top: 10, right: 10),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.elliptical(15, 15),
-                              topRight: Radius.elliptical(15, 15)),
-                          color: Colors.white),
-                      child: Column(
-                        children: [
-                          Container(
-                          constraints: BoxConstraints(maxHeight: 40),
-                          child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [TextButton.icon(onPressed: () {
-                                            Navigator.pop(context);
-                                          }, label: Text(
-                                      "Back",
-                                      style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black87),
-                                    ),icon: Icon(Icons.arrow_back_ios,color: Colors.black87,))],),
-                        ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                         
-
-                          Expanded(
+            body: PageWrapper(
+              bodyItem:   Expanded(
                             child: RefreshIndicator(
                               onRefresh: () async {
                                 context
                                     .read<LessonBloc>()
-                                    .add(const LessonEvent.started());
+                                    .add(const LessonEvent.starterPack());
                               },
                               child: BlocConsumer<LessonBloc, LessonState>(
                                 listener: (context, state) {
@@ -152,6 +80,8 @@ class _StarterLessonsPageState extends State<StarterLessonsPage> {
                                       enabled: true,
                                       child: ListView.separated(
                                           padding: EdgeInsets.zero,
+                                         physics: BouncingScrollPhysics(),
+                                         shrinkWrap: true,
                                           separatorBuilder: (context, index) =>
                                               const Divider(
                                                 color: Colors.black26,
@@ -206,7 +136,7 @@ class _StarterLessonsPageState extends State<StarterLessonsPage> {
                                                 LessonItemWidget(
                                               index: index,
                                               lessonCode: data.result[index].lessonCode??"",
-                                              isPremium: Utils.getToken(encryptedSharedPreferences).isPremium,
+                                              isPremium: Utils.getToken(encryptedSharedPreferences).role.contains("starter"),
                                               buttonTitle: "Lesson ${index + 1}",
                                               description:
                                                   data.result[index].description,
@@ -245,10 +175,6 @@ class _StarterLessonsPageState extends State<StarterLessonsPage> {
                               ),
                             ),
                           ),
-                        ],
-                      )),
-                )
-              ],
             ));
       }),
     );

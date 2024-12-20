@@ -33,18 +33,7 @@ class _AccountPageState extends State<AccountPage> {
                     ))),
           ],
         ),
-        actions: [CountryCodePicker(
-                  onChanged: (element) => debugPrint(element.code),
-                  initialSelection: 'ID',
-                  showCountryOnly: true,
-                  countryFilter: const ["ID"],
-                  showOnlyCountryWhenClosed: true,
-                 
-                  favorite: const ['+62', 'ID'],
-                  hideSearch: true,
-                  hideMainText: true,
-
-                ),],
+       
       ),
       body: const SingleChildScrollView(
           physics: BouncingScrollPhysics(),

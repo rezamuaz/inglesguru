@@ -86,213 +86,222 @@ class _FlashCardPageState extends State<FlashCardPage> {
             padding: const EdgeInsets.all(20),
             child: Center(child: BlocBuilder<WordsBloc, WordsState>(
               builder: (context, state) {
-                return Skeletonizer(
-                  enabled: state.status == WordsStateStatus.loading ||
-                          state.status == WordsStateStatus.initial
-                      ? true
-                      : false,
-                  child: FlipCard(
-                    rotateSide: RotateSide.right,
-                    disableSplashEffect: false,
-                    splashColor: Colors.orange,
-                    onTapFlipping: false,
-                    axis: FlipAxis.vertical,
-                    controller: con,
-                    frontWidget: AspectRatio(
-                      aspectRatio: 1,
-                      child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.white,
-                              border: Border.all(color: Colors.black87)),
-                          constraints: BoxConstraints(
-                              maxHeight: MediaQuery.of(context).size.width),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Skeletonizer(
+                      enabled: state.status == WordsStateStatus.loading ||
+                              state.status == WordsStateStatus.initial
+                          ? true
+                          : false,
+                      child: FlipCard(
+                        rotateSide: RotateSide.right,
+                        disableSplashEffect: false,
+                        splashColor: Colors.orange,
+                        onTapFlipping: false,
+                        axis: FlipAxis.vertical,
+                        controller: con,
+                        frontWidget: AspectRatio(
+                          aspectRatio: 1,
+                          child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.black87)),
+                              constraints: BoxConstraints(
+                                  maxHeight: MediaQuery.of(context).size.width),
+                              child: Column(
                                 children: [
-                                  Text(
-                                    "EN",
-                                    style: GoogleFonts.inter(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "EN",
+                                        style: GoogleFonts.inter(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      IconButton.filledTonal(
+                                          onPressed: () {
+                                            context.read<WordsBloc>().add(
+                                                WordsEvent.shuffle(
+                                                    lessonCode: widget.lessonCode));
+                                          },
+                                          icon: const Icon(Icons.shuffle))
+                                    ],
                                   ),
-                                  IconButton.filledTonal(
-                                      onPressed: () {
-                                        context.read<WordsBloc>().add(
-                                            WordsEvent.shuffle(
-                                                lessonCode: widget.lessonCode));
-                                      },
-                                      icon: const Icon(Icons.shuffle))
+                                  state.status == WordsStateStatus.success
+                                      ? Expanded(
+                                          child: GestureDetector(
+                                              behavior: HitTestBehavior.translucent,
+                                              onTap: () => con.flipcard(),
+                                              child: Align(
+                                                  alignment: Alignment.center,
+                                                  child:
+                                                      Builder(builder: (context) {
+                                                    var data = jsonDecode(state
+                                                        .words[cardIndex].word!);
+                                                    return Text(
+                                                      data["en"] ?? "",
+                                                      style: GoogleFonts.inter(
+                                                          fontSize: 22,
+                                                          fontStyle:
+                                                              FontStyle.italic),
+                                                    );
+                                                  }))))
+                                      : const Expanded(
+                                          child: Center(
+                                              child: CircularProgressIndicator()),
+                                        ),
+                                  Skeletonizer(
+                                    enabled:
+                                        state.status == WordsStateStatus.success
+                                            ? false
+                                            : true,
+                                    child: state.status ==
+                                                WordsStateStatus.success &&
+                                            state.words[cardIndex].id != 0
+                                        ? FlashCardNav(
+                                            wordId: state.words[cardIndex].id,
+                                            enableNext:
+                                                cardIndex < state.words.length - 1
+                                                    ? true
+                                                    : false,
+                                            enablePrev:
+                                                cardIndex > 0 ? true : false,
+                                            buttonColor: Colors.black87,
+                                
+                                            onNext: () {
+                                              if (cardIndex < state.words.length) {
+                                                setState(() {
+                                                  cardIndex = cardIndex + 1;
+                                                });
+                                              }
+                                            },
+                                            onPrev: () {
+                                              if (cardIndex > 0) {
+                                                setState(() {
+                                                  cardIndex = cardIndex - 1;
+                                                });
+                                              }
+                                            },
+                                            onTick: () async {
+                                               update(state.words[cardIndex]);
+                                            },
+                                          )
+                                        : const SizedBox(),
+                                  )
                                 ],
-                              ),
-                              state.status == WordsStateStatus.success
-                                  ? Expanded(
-                                      child: GestureDetector(
-                                          behavior: HitTestBehavior.translucent,
-                                          onTap: () => con.flipcard(),
-                                          child: Align(
-                                              alignment: Alignment.center,
-                                              child:
-                                                  Builder(builder: (context) {
-                                                var data = jsonDecode(state
-                                                    .words[cardIndex].word!);
-                                                return Text(
-                                                  data["en"] ?? "",
-                                                  style: GoogleFonts.inter(
-                                                      fontSize: 22,
-                                                      fontStyle:
-                                                          FontStyle.italic),
-                                                );
-                                              }))))
-                                  : const Expanded(
-                                      child: Center(
-                                          child: CircularProgressIndicator()),
-                                    ),
-                              Skeletonizer(
-                                enabled:
-                                    state.status == WordsStateStatus.success
-                                        ? false
-                                        : true,
-                                child: state.status ==
-                                            WordsStateStatus.success &&
-                                        state.words[cardIndex].id != 0
-                                    ? FlashCardNav(
-                                        wordId: state.words[cardIndex].id,
-                                        enableNext:
-                                            cardIndex < state.words.length - 1
-                                                ? true
-                                                : false,
-                                        enablePrev:
-                                            cardIndex > 0 ? true : false,
-                                        buttonColor: Colors.black87,
-                            
-                                        onNext: () {
-                                          if (cardIndex < state.words.length) {
-                                            setState(() {
-                                              cardIndex = cardIndex + 1;
-                                            });
-                                          }
-                                        },
-                                        onPrev: () {
-                                          if (cardIndex > 0) {
-                                            setState(() {
-                                              cardIndex = cardIndex - 1;
-                                            });
-                                          }
-                                        },
-                                        onTick: () async {
-                                           update(state.words[cardIndex]);
-                                        },
-                                      )
-                                    : const SizedBox(),
-                              )
-                            ],
-                          )),
-                    ),
-                    backWidget: AspectRatio(
-                      aspectRatio: 1,
-                      child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.black87,
-                              border: Border.all(color: Colors.black87)),
-                          constraints: BoxConstraints(
-                              maxHeight: MediaQuery.of(context).size.width),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              )),
+                        ),
+                        backWidget: AspectRatio(
+                          aspectRatio: 1,
+                          child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.black87,
+                                  border: Border.all(color: Colors.black87)),
+                              constraints: BoxConstraints(
+                                  maxHeight: MediaQuery.of(context).size.width),
+                              child: Column(
                                 children: [
-                                  Text(
-                                    "ID",
-                                    style: GoogleFonts.inter(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "ID",
+                                        style: GoogleFonts.inter(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      ),
+                                     IconButton.filledTonal(
+                                          onPressed: () {
+                                            context.read<WordsBloc>().add(
+                                                WordsEvent.shuffle(
+                                                    lessonCode: widget.lessonCode));
+                                          },
+                                          icon: const Icon(Icons.shuffle))
+                                    ],
                                   ),
-                                 IconButton.filledTonal(
-                                      onPressed: () {
-                                        context.read<WordsBloc>().add(
-                                            WordsEvent.shuffle(
-                                                lessonCode: widget.lessonCode));
-                                      },
-                                      icon: const Icon(Icons.shuffle))
+                                  state.status == WordsStateStatus.success
+                                      ? Expanded(
+                                          child: GestureDetector(
+                                              behavior: HitTestBehavior.translucent,
+                                              onTap: () => con.flipcard(),
+                                              child: Align(
+                                                  alignment: Alignment.center,
+                                                  child:
+                                                      Builder(builder: (context) {
+                                                    var data = jsonDecode(state
+                                                        .words[cardIndex].word!);
+                                                    return Text(
+                                                      data["id"] ?? "",
+                                                      style: GoogleFonts.inter(
+                                                          fontSize: 22,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                          color: Colors.white),
+                                                    );
+                                                  }))))
+                                      : const Expanded(
+                                          child: Center(
+                                              child: CircularProgressIndicator())),
+                                  Skeletonizer(
+                                    enabled:
+                                        state.status == WordsStateStatus.success
+                                            ? false
+                                            : true,
+                                    child: state.status ==
+                                                WordsStateStatus.success &&
+                                            state.words[cardIndex].id != 0
+                                        ? FlashCardNav(
+                                            wordId: state.words[cardIndex].id,
+                                            buttonColor: Colors.white,
+                                            enableNext:
+                                                cardIndex < state.words.length - 1
+                                                    ? true
+                                                    : false,
+                                            enablePrev:
+                                                cardIndex > 0 ? true : false,
+                                            onNext: () {
+                                              if (cardIndex <
+                                                  state.words.length - 1) {
+                                                setState(() {
+                                                  cardIndex = cardIndex + 1;
+                                                });
+                                              }
+                                            },
+                                            onPrev: () {
+                                              if (cardIndex > 0) {
+                                                setState(() {
+                                                  cardIndex = cardIndex - 1;
+                                                });
+                                              }
+                                            },
+                                            onTick: (){
+                                              // await setTickData(value[cardIndex].wordId);
+                                              update(state.words[cardIndex]);
+                                            },
+                                          )
+                                        : const SizedBox(),
+                                  )
                                 ],
-                              ),
-                              state.status == WordsStateStatus.success
-                                  ? Expanded(
-                                      child: GestureDetector(
-                                          behavior: HitTestBehavior.translucent,
-                                          onTap: () => con.flipcard(),
-                                          child: Align(
-                                              alignment: Alignment.center,
-                                              child:
-                                                  Builder(builder: (context) {
-                                                var data = jsonDecode(state
-                                                    .words[cardIndex].word!);
-                                                return Text(
-                                                  data["id"] ?? "",
-                                                  style: GoogleFonts.inter(
-                                                      fontSize: 22,
-                                                      fontStyle:
-                                                          FontStyle.italic,
-                                                      color: Colors.white),
-                                                );
-                                              }))))
-                                  : const Expanded(
-                                      child: Center(
-                                          child: CircularProgressIndicator())),
-                              Skeletonizer(
-                                enabled:
-                                    state.status == WordsStateStatus.success
-                                        ? false
-                                        : true,
-                                child: state.status ==
-                                            WordsStateStatus.success &&
-                                        state.words[cardIndex].id != 0
-                                    ? FlashCardNav(
-                                        wordId: state.words[cardIndex].id,
-                                        buttonColor: Colors.white,
-                                        enableNext:
-                                            cardIndex < state.words.length - 1
-                                                ? true
-                                                : false,
-                                        enablePrev:
-                                            cardIndex > 0 ? true : false,
-                                        onNext: () {
-                                          if (cardIndex <
-                                              state.words.length - 1) {
-                                            setState(() {
-                                              cardIndex = cardIndex + 1;
-                                            });
-                                          }
-                                        },
-                                        onPrev: () {
-                                          if (cardIndex > 0) {
-                                            setState(() {
-                                              cardIndex = cardIndex - 1;
-                                            });
-                                          }
-                                        },
-                                        onTick: (){
-                                          // await setTickData(value[cardIndex].wordId);
-                                          update(state.words[cardIndex]);
-                                        },
-                                      )
-                                    : const SizedBox(),
-                              )
-                            ],
-                          )),
+                              )),
+                        ),
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Colors.white,),child: Text("Ketuk untuk melihat terjemahan",style: GoogleFonts.inter(fontSize: 14,fontStyle: FontStyle.italic),)),
+                    )
+                  ],
                 );
               },
             )),

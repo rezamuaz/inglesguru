@@ -81,7 +81,7 @@ class _AccountInfoState extends State<AccountInfo> {
                                   encryptedSharedPreferences,
                               String? updatedKey) {
                                 return Text(
-                     Utils.getToken(encryptedSharedPreferences).isPremium? "PREMIUM":"FREE",
+                     Utils.getToken(encryptedSharedPreferences).role.contains("advance") ||  Utils.getToken(encryptedSharedPreferences).role.contains("starter")? "MEMBER":"GUEST",
                       style: GoogleFonts.inter(
                           fontSize: 12, fontWeight: FontWeight.bold,letterSpacing: 1.1),
                     );

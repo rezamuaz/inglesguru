@@ -22,6 +22,7 @@ class SceneBuilderWidget extends StatefulWidget {
       required this.lessonCode,
       required this.pageNumber,
       required this.isBack,
+      this.closePage,
       required this.totalPage});
 
   ///Contains step data
@@ -30,6 +31,7 @@ class SceneBuilderWidget extends StatefulWidget {
   final Function() nextPage;
   final Function() prevPage;
   final int pageLength;
+  final VoidCallback? closePage;
   final int currentPage;
   final String lessonCode;
   final bool isBack;
@@ -152,13 +154,11 @@ class _SceneBuilderWidgetState extends State<SceneBuilderWidget>
           ],
         ),
         
-        // Positioned(
-        //       top: 10,
-        //       right: 20,
-        //       child: IconButton(onPressed:  () {
-                    
-        //           }, icon: Icon(Icons.more_vert,color: Colors.black87,)),
-        //     ),
+        Positioned(
+              top: 5,
+              right: 30,
+              child: IconButton.filledTonal(onPressed:widget.closePage, icon: Icon(Icons.close,color: Colors.black87,)),
+            ),
         //Show Bottom Sheet Dialog for Record
         Positioned(
             bottom: 0,

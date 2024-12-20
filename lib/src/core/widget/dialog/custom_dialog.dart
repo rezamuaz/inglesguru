@@ -12,6 +12,7 @@ class CustomeDialogOverlay extends StatefulWidget {
       required this.singleButton,
       required this.cancelButtonColor,
       required this.okButtonColor,
+      this.customDesc,
       this.okBtnText});
   final VoidCallback? onCancel;
   final VoidCallback? onSubmit;
@@ -19,6 +20,7 @@ class CustomeDialogOverlay extends StatefulWidget {
   final String? cancelBtnText;
   final String? title;
   final String? description;
+  final Widget? customDesc;
   final bool singleButton;
   final Color okButtonColor;
   final Color cancelButtonColor;
@@ -78,7 +80,7 @@ class CustomeDialogOverlayState extends State<CustomeDialogOverlay>
                       textAlign: TextAlign.center,
                     ),
                   )),
-                  widget.description != null
+                 widget.customDesc != null? widget.customDesc! :  widget.description != null
                       ? Flexible(
                           child: Padding(
                           padding: const EdgeInsets.only(
@@ -89,6 +91,7 @@ class CustomeDialogOverlayState extends State<CustomeDialogOverlay>
                             style: GoogleFonts.inter(
                                 fontSize: 14, color: Colors.black87),
                             textAlign: TextAlign.center,
+
                           ),
                         ))
                       : const SizedBox.shrink(),

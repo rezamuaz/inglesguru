@@ -4,8 +4,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sysbit/src/core/common/error_widget_return.dart';
+import 'package:sysbit/src/core/utils/extention.dart';
 import 'package:sysbit/src/core/utils/utils.dart';
 import 'package:sysbit/src/features/home_page/presentation/blocs/payment_bloc.dart';
+import 'package:sysbit/src/features/home_page/presentation/blocs/price_bloc.dart';
+import 'package:sysbit/src/features/home_page/presentation/widget/price_option.dart';
 import 'package:sysbit/src/features/payment_page/presentation/pages/payment_page.dart';
 
 class PaymentBottom extends StatefulWidget {
@@ -17,24 +20,33 @@ class PaymentBottom extends StatefulWidget {
 
 class _PaymentBottomState extends State<PaymentBottom> {
   bool term = false;
+   String? selectedOption = '';
+   String? onValue;
+   int? onPrice;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PaymentBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => PaymentBloc(),
+        ),
+        BlocProvider(
+          create: (context) => PriceBloc()..add(PriceEvent.started()),
+        ),
+      ],
       child: Builder(builder: (context) {
         return BlocListener<PaymentBloc, PaymentState>(
           listener: (context, state) {
             state.whenOrNull(
               loaded: (data) {
                 Navigator.pop(context);
-                Navigator.of(context,rootNavigator: true).push(Utils.createRoute(PaymentPage(
-                      url: data.paymentUrl,
-                    )));
+                Navigator.of(context, rootNavigator: true)
+                    .push(Utils.createRoute(PaymentPage(
+                  url: data.paymentUrl,
+                )));
               },
-              error: (error) {
-               
-              },
+              error: (error) {},
             );
           },
           child: Container(
@@ -61,42 +73,56 @@ class _PaymentBottomState extends State<PaymentBottom> {
                   ],
                 ),
                 const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 2, right: 8),
-                            child: Text(
-                              "•",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          Flexible(
-                            child: Text("Ingles Guru Akses Permanen",
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.inter(
-                                  fontSize: 16,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                        child: Text("Rp. 349.999",
-                            textAlign: TextAlign.right,
-                            style: GoogleFonts.inter(
-                              fontSize: 16,
-                            )))
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Flexible(
+                //       flex: 1,
+                //       child: Row(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         mainAxisSize: MainAxisSize.min,
+                //         children: [
+                //           const Padding(
+                //             padding: EdgeInsets.only(left: 2, right: 8),
+                //             child: Text(
+                //               "•",
+                //               style: TextStyle(fontSize: 20),
+                //             ),
+                //           ),
+                //           Flexible(
+                //             child: Text("Ingles Guru Akses Permanen",
+                //                 textAlign: TextAlign.left,
+                //                 style: GoogleFonts.inter(
+                //                   fontSize: 16,
+                //                 )),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //     Expanded(
+                //         child: Text("Rp. 349.999",
+                //             textAlign: TextAlign.right,
+                //             style: GoogleFonts.inter(
+                //               fontSize: 16,
+                //             )))
+                //   ],
+                // ),
+                PriceOption(
+                  onPrice: (p0) {
+                    setState(() {
+                      onPrice = p0;
+                    });
+                  },onValue: (p0) {
+                  setState(() {
+                    onValue = p0;
+                  });
+                },groupValue: selectedOption??"", onChanged: (p0) {
+                  selectedOption = p0;
+                  setState(() {  
+                  });
+                },),
                 const SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -119,11 +145,11 @@ class _PaymentBottomState extends State<PaymentBottom> {
                         style: GoogleFonts.inter(
                           fontSize: 16,
                         )),
-                    Expanded(
-                        child: Text("Rp. 349.999",
+                    onPrice != null? Expanded(
+                        child: Text("${onPrice?.toCurrency}",
                             textAlign: TextAlign.right,
                             style: GoogleFonts.inter(
-                                fontSize: 16, fontWeight: FontWeight.bold)))
+                                fontSize: 16, fontWeight: FontWeight.bold))): Expanded(child: SizedBox())
                   ],
                 ),
                 Align(
@@ -178,9 +204,10 @@ class _PaymentBottomState extends State<PaymentBottom> {
                               WidgetStatePropertyAll(Colors.black87)),
                       onPressed: () {
                         if (!term) return;
+                        if(onValue == null ) return;
                         context
                             .read<PaymentBloc>()
-                            .add(const PaymentEvent.started());
+                            .add(PaymentEvent.started(onValue??""));
                       },
                       child: BlocBuilder<PaymentBloc, PaymentState>(
                         builder: (context, state) {
@@ -194,7 +221,9 @@ class _PaymentBottomState extends State<PaymentBottom> {
                               child: CircularProgressIndicator(),
                             ),
                             loaded: (data) => Text("Selanjutnya".toUpperCase()),
-                            error: (error) => errorWidget(error,style: GoogleFonts.inter(fontSize: 14,color: Colors.white)),
+                            error: (error) => errorWidget(error,
+                                style: GoogleFonts.inter(
+                                    fontSize: 14, color: Colors.white)),
                           );
                         },
                       )),

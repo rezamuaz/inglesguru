@@ -93,7 +93,7 @@ class AuthInterceptor extends QueuedInterceptorsWrapper {
         _requestsNeedRetry.add((options: response.requestOptions, handler: handler));
 
         // call api refresh token
-        final isRefreshSuccess = await _customeAccessToken(user!,user.refreshToken!);
+        final isRefreshSuccess = await _customeAccessToken(user!,user.refreshToken);
 
         if (isRefreshSuccess) {
           // refresh success, loop requests need retry
@@ -146,7 +146,7 @@ class AuthInterceptor extends QueuedInterceptorsWrapper {
       var user =
           await SharedPrefs.getToken();
 
-      final String refreshToken = user!.refreshToken ?? "";
+      final String refreshToken = user!.refreshToken;
       // make request to server to get the new access token from server using refresh token
       var response = await getAccessToken(refreshToken);
       //success response

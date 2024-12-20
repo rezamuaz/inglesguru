@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:apple_sign_in_plugin/apple_sign_in_plugin.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -10,7 +11,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:objectbox/objectbox.dart';
-
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:http/http.dart' as http;
 import 'package:sysbit/gen/assets.gen.dart';
 import 'package:sysbit/src/app.dart';
 import 'package:sysbit/src/core/constant/constant.dart';
@@ -32,7 +34,6 @@ class SigninPage extends StatefulWidget {
 class _SigninPageState extends State<SigninPage> {
   GoogleSignInAccount? _currentUser;
   bool _isAuthorized = false; // has granted permissions?
-
 
   AuthButtonType? buttonType;
   AuthIconType? iconType;
@@ -140,122 +141,170 @@ class _SigninPageState extends State<SigninPage> {
                               ),
                             ),
                           ),
-                        
                           Positioned(
                             left: 0,
                             right: 0,
                             bottom: MediaQuery.of(context).size.height * 0.1,
                             child: Column(
-                              
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                               Padding(
-                                 padding: const EdgeInsets.only(bottom: 15),
-                                 child: Column(
-                                                               children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 15),
+                                  child: Column(
                                     children: [
-                                      Text(
-                                        "Selamat Datang di",
-                                        style: GoogleFonts.inter(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.w300,
-                                            height: 0.5),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Selamat Datang di",
+                                            style: GoogleFonts.inter(
+                                                fontSize: 19,
+                                                fontWeight: FontWeight.w300,
+                                                height: 0.5),
+                                          ),
+                                          Text(
+                                            "Ingles Guru",
+                                            style: GoogleFonts.inter(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.w800,
+                                                letterSpacing: 1.2),
+                                          ),
+                                        ],
                                       ),
                                       Text(
-                                        "Ingles Guru",
+                                        "Cara Menyenangkan untuk Belajar Bahasa Inggris",
                                         style: GoogleFonts.inter(
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w800,
-                                            letterSpacing: 1.2),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300),
                                       ),
                                     ],
                                   ),
-                                  Text(
-                                    "Cara Menyenangkan untuk Belajar Bahasa Inggris",
-                                    style: GoogleFonts.inter(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w300),
-                                  ),
-                                                               ],
-                                                             ),
-                               ),
-                               Column(mainAxisSize: MainAxisSize.min,children: [
-                                 Platform.isAndroid? Container(
-                                  constraints: BoxConstraints(minWidth: 250),
-                                   child:  GoogleAuthButton(
-                                    
-                                    onPressed: () async {
-                                      bool status = await Network
-                                          .connection.hasInternetAccess;
-                                      if (!status) {
-                                        if (context.mounted) {
-                                          ScaffoldMessenger.of(context)
-                                            ..hideCurrentMaterialBanner()
-                                            ..showMaterialBanner(materialBanner);
-                                          return;
-                                        }
-                                      }
-                                      // try{
-                                      if (context.mounted) {
-                                        showDialogue(context);
-                                        // await requestPermissionUntilGranted();
-                                        
-                                        _currentUser =
-                                            await googleSignIn.signIn();
-                                        if (_currentUser != null) {
-                                          var userData = UserAuth(
-                                              name: _currentUser?.displayName,
-                                              email: _currentUser?.email,
-                                              sub: _currentUser?.id,
-                                              picture: _currentUser?.photoUrl);
-                                         
-                                          BlocProvider.of<AuthBloc>(context).add(
-                                              AuthEvent.signing(userData));
-                                        }
-                                                             
-                                        setState(() {
-                                          isLoading = !isLoading;
-                                        });
-                                      }
-                                                             
-                                    
-                                    },
-                                    themeMode: themeMode,
-                                    isLoading: isLoading,
-                                    style: AuthButtonStyle(
-                                      borderRadius: 20,
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .apply(color: Colors.grey[700]),
-                                      margin: const EdgeInsets.only(bottom: 10),
-                                    ),
-                                                                   ),
-                                 ):SizedBox(),
-                                 Platform.isIOS? Container(
-                                  constraints: BoxConstraints(minWidth: 250),
-                                   child: AppleAuthButton(
-                                    
-                                    themeMode: themeMode,
-                                    isLoading: isLoading,
-                                    style: AuthButtonStyle(
-                                      buttonColor: Colors.white,
-                                      borderRadius: 20,
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .apply(color: Colors.grey[700]),
-                                      margin: const EdgeInsets.only(bottom: 10),
-                                    ),
-                                   ),
-                                 ):SizedBox(),
-                               ],)
-                               
-                                                     
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Platform.isAndroid
+                                        ? Container(
+                                            constraints:
+                                                BoxConstraints(minWidth: 250),
+                                            child: GoogleAuthButton(
+                                              onPressed: () async {
+                                                bool status = await Network
+                                                    .connection
+                                                    .hasInternetAccess;
+                                                if (!status) {
+                                                  if (context.mounted) {
+                                                    ScaffoldMessenger.of(
+                                                        context)
+                                                      ..hideCurrentMaterialBanner()
+                                                      ..showMaterialBanner(
+                                                          materialBanner);
+                                                    return;
+                                                  }
+                                                }
+                                                // try{
+                                                if (context.mounted) {
+                                                  showDialogue(context);
+                                                  // await requestPermissionUntilGranted();
+
+                                                  _currentUser =
+                                                      await googleSignIn
+                                                          .signIn();
+                                                  if (_currentUser != null) {
+                                                    var userData = UserAuth(
+                                                        name: _currentUser
+                                                            ?.displayName,
+                                                        email:
+                                                            _currentUser?.email,
+                                                        sub: _currentUser?.id,
+                                                        picture: _currentUser
+                                                            ?.photoUrl);
+
+                                                    BlocProvider.of<AuthBloc>(
+                                                            context)
+                                                        .add(AuthEvent.signing(
+                                                            userData));
+                                                  }
+
+                                                  setState(() {
+                                                    isLoading = !isLoading;
+                                                  });
+                                                }
+                                              },
+                                              themeMode: themeMode,
+                                              isLoading: isLoading,
+                                              style: AuthButtonStyle(
+                                                borderRadius: 20,
+                                                textStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium!
+                                                    .apply(
+                                                        color:
+                                                            Colors.grey[700]),
+                                                margin: const EdgeInsets.only(
+                                                    bottom: 10),
+                                              ),
+                                            ),
+                                          )
+                                        : SizedBox(),
+                                    Platform.isIOS
+                                        ? Container(
+                                            constraints:
+                                                BoxConstraints(maxWidth: 250),
+                                            child: SignInWithAppleButton(
+
+                                              onPressed: () async {
+                                                bool status = await Network
+                                                    .connection
+                                                    .hasInternetAccess;
+                                                if (!status) {
+                                                  if (context.mounted) {
+                                                    ScaffoldMessenger.of(
+                                                        context)
+                                                      ..hideCurrentMaterialBanner()
+                                                      ..showMaterialBanner(
+                                                          materialBanner);
+                                                    return;
+                                                  }
+                                                }
+                                                if (context.mounted) {
+                                                  showDialogue(context);
+                                                  final credential = await AppleSignInPlugin.signInWithApple();
+                                                    logger.d("email ${credential?.email}");
+                                                    logger.d("family ${credential?.familyName}");
+                                                    logger.d("given ${credential?.givenName}");
+                                                     logger.d("idn token ${credential?.identityToken}");
+                                                     logger.d("usr idnt ${credential?.userIdentifier}");
+                                                     logger.d("state ${credential?.state}");
+                                                    var userData = UserAuth(
+                                                        name: "${credential?.familyName}${credential?.givenName}"
+                                                            ,
+                                                        email:
+                                                            "${credential?.email}",
+                                                        sub: "${credential?.userIdentifier}",
+                                                        picture: "");
+          
+                                                    BlocProvider.of<AuthBloc>(
+                                                            context)
+                                                        .add(AuthEvent.signing(
+                                                            userData));
+                                                    setState(() {
+                                                      isLoading = !isLoading;
+                                                    });
+                                                  // }
+                                                }
+
+                                                // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+                                                // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+                                              },
+                                            ))
+                                        : SizedBox()
+                                  ],
+                                )
                               ],
                             ),
                           ),

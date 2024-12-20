@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:apple_sign_in_plugin/apple_sign_in_plugin.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sysbit/src/app.dart';
@@ -55,7 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                   role: data.role ?? []);
               await SharedPrefs.setToken(token);
               // Update the user with the new token
-              emit(AuthState.isAuthorized());
+              emit(const AuthState.isAuthorized());
             },
             failure: (error, msg) {
               emit(const AuthState.unAuthorized());
@@ -64,7 +67,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         },
         signout: () async {
           emit(const AuthState.loading());
-          googleSignIn.disconnect();
+          if(Platform.isAndroid){
+            googleSignIn.disconnect();
+          }
+          if(Platform.isIOS){
+            await AppleSignInPlugin.signOut();
+          }
+          
           SharedPrefs.removeToken();
           SharedPrefs.removeUser();
           return emit(const AuthState.unAuthorized());
@@ -89,15 +98,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                   return emit(AuthState.isAuthorized());
                 },
                 failure: (error, msg) {
-                  googleSignIn.disconnect();
+                  if(Platform.isAndroid){
+                    googleSignIn.disconnect();
+                  }
+                   if(Platform.isIOS){
+           AppleSignInPlugin.signOut();
+          }
+                  
                   SharedPrefs.removeToken();
                   SharedPrefs.removeUser();
                   return emit(const AuthState.unAuthorized());
                 },
               );
             }
+         
             return emit(AuthState.isAuthorized());
           }
+              if(Platform.isAndroid){
+                    googleSignIn.disconnect();
+                  }
+                   if(Platform.isIOS){
+            AppleSignInPlugin.signOut();
+          }
+                  SharedPrefs.removeToken();
+                  SharedPrefs.removeUser();
           return emit(const AuthState.unAuthorized());
         },
       );

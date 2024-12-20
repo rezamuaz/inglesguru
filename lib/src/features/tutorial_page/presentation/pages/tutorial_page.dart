@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sysbit/src/core/constant/constant.dart';
@@ -30,8 +32,10 @@ class _TutorialPageState extends State<TutorialPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       
+       appBar:  Platform.isIOS? AppBar(backgroundColor: Colors.black,foregroundColor: Colors.white,):null,
       key: tutorKey,
-      extendBodyBehindAppBar: true,
+
       backgroundColor: Colors.black,
       body: Center(
           child: TutorialPlayer(

@@ -71,7 +71,7 @@ class _LifeCycleManagerState extends State<LifeCycleManager>
 
     // get refresh token from local storage
     var user = await SharedPrefs.getToken();
-    if (user != null && !user.isPremium) {
+    if (user != null) {
       final String refreshToken = user.refreshToken;
       // make request to server to get the new access token from server using refresh token
 

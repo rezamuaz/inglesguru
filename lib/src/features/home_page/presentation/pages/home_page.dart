@@ -8,7 +8,6 @@ import 'package:sysbit/gen/assets.gen.dart';
 import 'package:sysbit/src/core/local_storage/key_storage/key_storage.dart';
 import 'package:sysbit/src/core/local_storage/shared_pref/shared_pref.dart';
 import 'package:sysbit/src/core/utils/utils.dart';
-import 'package:sysbit/src/features/advanced_page/pages/advance_page.dart';
 import 'package:sysbit/src/features/home_page/presentation/widget/advanced_pac_widget.dart';
 import 'package:sysbit/src/features/home_page/presentation/widget/examp_pac_widget.dart';
 import 'package:sysbit/src/features/home_page/presentation/widget/payment_bottom.dart';
@@ -124,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                               String? updatedKey) {
                             return AdvancedPacWidget(
                               isPremium: Utils.getToken(encryptedSharedPreferences)
-                                  .isPremium,
+                                  .role.contains("advance"),
                               onTapPay: () async {
                                 await showCustomModalBottomSheet(context);
                               },
@@ -166,6 +165,7 @@ class _HomePageState extends State<HomePage> {
       useRootNavigator: true,
       isDismissible: false,
       context: context,
+      useSafeArea: true,
       builder: (BuildContext context) {
         return const PaymentBottom();
       },

@@ -7,6 +7,7 @@ import 'package:sysbit/src/app.dart';
 import 'package:sysbit/src/core/common/api_result.dart';
 import 'package:sysbit/src/core/common/network_exceptions.dart';
 import 'package:sysbit/src/core/constant/constant.dart';
+import 'package:sysbit/src/core/local_storage/key_storage/key_storage.dart';
 import 'package:sysbit/src/core/local_storage/shared_pref/shared_pref.dart';
 import 'package:sysbit/src/core/network/network.dart';
 import 'package:sysbit/src/features/purchase_page/data/model/payment_item.dart';
@@ -30,7 +31,7 @@ class PaymentHistoryBloc
                 await PurchaseRepoImpl().getPaymentRemote();
             return apiResult.when(success: (data, success, rc) async {
               SharedPrefs.instance
-                  .setString(Constant.jsonPaymentHistory, jsonEncode(data));
+                  .setString(Keys.jsonPaymentHistory, jsonEncode(data));
               return emit(PaymentHistoryState.loaded(data));
             }, failure: (error, msg) async {
               return emit(PaymentHistoryState.error(error));
@@ -38,7 +39,7 @@ class PaymentHistoryBloc
             //When Internet Connection Disable
           }
           var cache =
-              SharedPrefs.instance.getString(Constant.jsonPaymentHistory);
+              SharedPrefs.instance.getString(Keys.jsonPaymentHistory);
           var data = (cache as List)
               .map(
                 (e) => PaymentItem.fromJson(e),

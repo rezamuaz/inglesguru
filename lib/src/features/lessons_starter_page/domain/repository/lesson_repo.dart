@@ -5,7 +5,8 @@ import 'package:sysbit/src/core/constant/constant.dart';
 import 'package:sysbit/src/features/lessons_starter_page/data/model/lesson_mod.dart';
 
 abstract class LessonRepo {
-  Future<ApiResult<LessonMod>> getLessonRemote();
+  Future<ApiResult<LessonMod>> getStarterLessonRemote();
+   Future<ApiResult<LessonMod>> getAdvanceLessonRemote();
 
 }
 
@@ -14,12 +15,23 @@ class LessonRepoImpl implements LessonRepo {
   LessonRepoImpl();
   
   @override
-  Future<ApiResult<LessonMod>> getLessonRemote() async {
+  Future<ApiResult<LessonMod>> getStarterLessonRemote() async {
    apiService.configureDio(baseUrl: Constant.baseurl,
        );
     return await apiService.getApi(
       additionalInterceptors: [AuthInterceptor()],
-      Constant.lesson,
+      Constant.starterLesson,
+      onSuccess: (response) => LessonMod.fromJson(response.data["result"]),
+    );
+  }
+
+   @override
+  Future<ApiResult<LessonMod>> getAdvanceLessonRemote() async {
+   apiService.configureDio(baseUrl: Constant.baseurl,
+       );
+    return await apiService.getApi(
+      additionalInterceptors: [AuthInterceptor()],
+      Constant.advanceLesson,
       onSuccess: (response) => LessonMod.fromJson(response.data["result"]),
     );
   }

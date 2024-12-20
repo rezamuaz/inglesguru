@@ -1,4 +1,7 @@
 
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/stacked_options.dart';
 import 'package:flutter/material.dart';
@@ -36,13 +39,13 @@ class _TutorialPlayerState extends State<TutorialPlayer> {
 
   @override
   void initState() {
-    var config = const BetterPlayerConfiguration(
+    var config = BetterPlayerConfiguration(
       autoPlay: true,
       looping: false,
       autoDispose: true,
       allowedScreenSleep: false,
-      fit: BoxFit.fill,
-      aspectRatio: 0.5625,
+      fit:BoxFit.fill,
+      aspectRatio: 9/16,
       controlsConfiguration: BetterPlayerControlsConfiguration(
         showControls: true,
         enableQualities: true,
@@ -58,7 +61,16 @@ class _TutorialPlayerState extends State<TutorialPlayer> {
     );
     _betterPlayerController =
         BetterPlayerController(config, betterPlayerDataSource: dataSource);
+  
     _betterPlayerController.addEventsListener((event) {
+        if (event.betterPlayerEventType == BetterPlayerEventType.initialized) {
+          // Update the aspect ratio
+          setState(() {
+            _betterPlayerController.setOverriddenAspectRatio(_betterPlayerController.videoPlayerController!.value.aspectRatio);
+           
+          });
+        }
+   
       if (_checkIfCanProcessPlayerEvent(event)) {
         Duration progress = event.parameters!['progress'];
         Duration duration = event.parameters!['duration'];
@@ -108,6 +120,6 @@ class _TutorialPlayerState extends State<TutorialPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return BetterPlayer(controller: _betterPlayerController);
+    return AspectRatio(aspectRatio: 9/16,child: BetterPlayer(controller: _betterPlayerController));
   }
 }

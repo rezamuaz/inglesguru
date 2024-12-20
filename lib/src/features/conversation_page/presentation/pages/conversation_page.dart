@@ -133,6 +133,9 @@ class _ConversationPageState extends State<ConversationPage> {
                               itemCount: widget.data.pages.length,
                               itemBuilder: (context, index) =>
                                   SceneBuilderWidget(
+                                    closePage: () {
+                                      Navigator.of(context).pop();
+                                    },
                                     totalPage:  widget.data.pages.length.toString(),
                                     pageNumber:
                                         widget.data.pages[index].page.toString(),

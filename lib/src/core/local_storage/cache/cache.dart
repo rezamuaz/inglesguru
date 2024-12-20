@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:sysbit/src/app.dart';
 
 class UnicornCache {
   UnicornCache();
@@ -112,7 +113,7 @@ class UnicornCache {
   Future<File?> getFilesCacheManager({
     required String url,
   }) async {
-    FileInfo? cache = await instance.getFileFromCache(key);
+    FileInfo? cache = await DefaultCacheManager().getFileFromCache(key);
     try {
       //File exist in cache
       if (cache != null) {
@@ -122,8 +123,9 @@ class UnicornCache {
           // Download nonexist file
         } else {
           try {
-            return await instance.getSingleFile(url);
+            return await DefaultCacheManager().getSingleFile(url);
           } catch (e) {
+             logger.e(e);
             return Future.error(e); // Return null if there was an error
           }
         }
@@ -132,10 +134,12 @@ class UnicornCache {
         try {
           return await instance.getSingleFile(url);
         } catch (e) {
+          logger.e(e);
           return Future.error(e); // Return null if there was an error
         }
       }
     } catch (e) {
+       logger.e(e);
       throw Exception("Error accessing file: $e");
     }
   }

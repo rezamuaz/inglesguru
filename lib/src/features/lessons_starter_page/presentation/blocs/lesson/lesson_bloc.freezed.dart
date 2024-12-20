@@ -18,33 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LessonEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() starterPack,
+    required TResult Function() advancePack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? starterPack,
+    TResult? Function()? advancePack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? starterPack,
+    TResult Function()? advancePack,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_StarterPac value) starterPack,
+    required TResult Function(_AdvancePac value) advancePack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_StarterPac value)? starterPack,
+    TResult? Function(_AdvancePac value)? advancePack,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_StarterPac value)? starterPack,
+    TResult Function(_AdvancePac value)? advancePack,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,18 +78,18 @@ class _$LessonEventCopyWithImpl<$Res, $Val extends LessonEvent>
 }
 
 /// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
-      __$$StartedImplCopyWithImpl<$Res>;
+abstract class _$$StarterPacImplCopyWith<$Res> {
+  factory _$$StarterPacImplCopyWith(
+          _$StarterPacImpl value, $Res Function(_$StarterPacImpl) then) =
+      __$$StarterPacImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$LessonEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+class __$$StarterPacImplCopyWithImpl<$Res>
+    extends _$LessonEventCopyWithImpl<$Res, _$StarterPacImpl>
+    implements _$$StarterPacImplCopyWith<$Res> {
+  __$$StarterPacImplCopyWithImpl(
+      _$StarterPacImpl _value, $Res Function(_$StarterPacImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of LessonEvent
@@ -92,18 +98,18 @@ class __$$StartedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StartedImpl implements _Started {
-  const _$StartedImpl();
+class _$StarterPacImpl implements _StarterPac {
+  const _$StarterPacImpl();
 
   @override
   String toString() {
-    return 'LessonEvent.started()';
+    return 'LessonEvent.starterPack()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
+        (other.runtimeType == runtimeType && other is _$StarterPacImpl);
   }
 
   @override
@@ -112,27 +118,30 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() starterPack,
+    required TResult Function() advancePack,
   }) {
-    return started();
+    return starterPack();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? starterPack,
+    TResult? Function()? advancePack,
   }) {
-    return started?.call();
+    return starterPack?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? starterPack,
+    TResult Function()? advancePack,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (starterPack != null) {
+      return starterPack();
     }
     return orElse();
   }
@@ -140,34 +149,142 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_StarterPac value) starterPack,
+    required TResult Function(_AdvancePac value) advancePack,
   }) {
-    return started(this);
+    return starterPack(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_StarterPac value)? starterPack,
+    TResult? Function(_AdvancePac value)? advancePack,
   }) {
-    return started?.call(this);
+    return starterPack?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_StarterPac value)? starterPack,
+    TResult Function(_AdvancePac value)? advancePack,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (starterPack != null) {
+      return starterPack(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements LessonEvent {
-  const factory _Started() = _$StartedImpl;
+abstract class _StarterPac implements LessonEvent {
+  const factory _StarterPac() = _$StarterPacImpl;
+}
+
+/// @nodoc
+abstract class _$$AdvancePacImplCopyWith<$Res> {
+  factory _$$AdvancePacImplCopyWith(
+          _$AdvancePacImpl value, $Res Function(_$AdvancePacImpl) then) =
+      __$$AdvancePacImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AdvancePacImplCopyWithImpl<$Res>
+    extends _$LessonEventCopyWithImpl<$Res, _$AdvancePacImpl>
+    implements _$$AdvancePacImplCopyWith<$Res> {
+  __$$AdvancePacImplCopyWithImpl(
+      _$AdvancePacImpl _value, $Res Function(_$AdvancePacImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LessonEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AdvancePacImpl implements _AdvancePac {
+  const _$AdvancePacImpl();
+
+  @override
+  String toString() {
+    return 'LessonEvent.advancePack()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AdvancePacImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() starterPack,
+    required TResult Function() advancePack,
+  }) {
+    return advancePack();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? starterPack,
+    TResult? Function()? advancePack,
+  }) {
+    return advancePack?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? starterPack,
+    TResult Function()? advancePack,
+    required TResult orElse(),
+  }) {
+    if (advancePack != null) {
+      return advancePack();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StarterPac value) starterPack,
+    required TResult Function(_AdvancePac value) advancePack,
+  }) {
+    return advancePack(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StarterPac value)? starterPack,
+    TResult? Function(_AdvancePac value)? advancePack,
+  }) {
+    return advancePack?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StarterPac value)? starterPack,
+    TResult Function(_AdvancePac value)? advancePack,
+    required TResult orElse(),
+  }) {
+    if (advancePack != null) {
+      return advancePack(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AdvancePac implements LessonEvent {
+  const factory _AdvancePac() = _$AdvancePacImpl;
 }
 
 /// @nodoc

@@ -18,7 +18,10 @@ class Constant {
   static const String refreshEndpoit = "/api/m/auth/refreshtoken";
 
   /// /api/m/lesson
-  static const String lesson = "/api/m/lesson?code=0101,0102,0103,0104,0105,0106,0107,0108,0109,0110,0111,0112,0113,0114,0115,0116,0117,0118,0119,0120";
+  static const String starterLesson = "/api/m/lesson?code=0101,0102,0103,0104,0105,0106,0107,0108,0109,0110,0111,0112,0113,0114,0115,0116,0117,0118,0119,0120";
+
+    /// /api/m/lesson
+  static const String advanceLesson = "/api/m/lesson?code=0201,0202,0203,0204,0205,0206,0207,0208,0209,0210";
 
   /// /api/m/lesson/detail
   static const String lessonDetail = "/api/m/lesson/detail";
@@ -31,6 +34,9 @@ class Constant {
 
   /// /api/m/payment/new
   static const String createPayment = "/api/m/payment/new";
+
+    /// /api/m/payment/price_list
+  static const String paymentPriceList = "/api/m/payment/price_list";
 
   /// /api/m/lesson/quiz
   static const String quiz = "/api/m/lesson/quiz";
@@ -45,20 +51,12 @@ class Constant {
   static const String flashCard = "/api/m/lesson/flash";
 
   /// /info/terms&conditions
-  static const String termsAndConditions = "/info/terms&conditions";
+  static const String termsAndConditionsAndroid = "/info/terms&conditions";
 
   /// /info/privacypolicy
-  static const String privacypolicy = "/info/privacypolicy";
+  static const String privacypolicyAndroid = "/info/privacypolicy";
 
-  /// Cache for lesson data
-  static const String jsonLesson = "jsonLesson";
+  
+  static const bool bypassPayment = true;
 
-  /// Cache for flashcard [prefix Key]
-  static const String jsonPrefixFlashCard = "flash";
-
-  /// Cache for flashcard [prefix Key]
-  static const String jsonPaymentHistory = "paymentHistory";
-
-  /// Cache for LessonConversation [prefix Key]
-  static const String jsonPrefixLessonConversation = "conv";
 }

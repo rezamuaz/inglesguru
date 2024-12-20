@@ -1,6 +1,6 @@
-# sysbit
+# Ingle Guru
 
-A new Flutter project.
+A Flutter project about english learning.
 
 ## Getting Started
 

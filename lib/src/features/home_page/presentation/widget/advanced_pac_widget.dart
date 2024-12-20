@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sysbit/gen/assets.gen.dart';
+import 'package:sysbit/src/core/constant/constant.dart';
 import 'package:sysbit/src/features/home_page/presentation/widget/start_button.dart';
 
 class AdvancedPacWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class AdvancedPacWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 5),
         child: InkWell(
-          onTap: isPremium ? onTapContent : onTapPay,
+          onTap: Constant.bypassPayment? onTapContent  :   isPremium ? onTapContent : onTapPay,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             width: double.infinity,
@@ -59,22 +60,22 @@ class AdvancedPacWidget extends StatelessWidget {
                                 color: Colors.black87),
                           ),
                           StartButton(
-                            bgColor: isPremium
+                            bgColor:  Constant.bypassPayment? Theme.of(context).colorScheme.primary : isPremium
                                 ? Theme.of(context).colorScheme.primary
                                 : Colors.black87,
                             widget: Text(
-                              isPremium
+                             Constant.bypassPayment? "Mulai".toUpperCase() :  isPremium
                                   ? "Mulai".toUpperCase()
                                   : "unlock".toUpperCase(),
                               style: GoogleFonts.inter(
-                                color: isPremium
+                                color:  Constant.bypassPayment?Colors.black87: isPremium
                                     ? Colors.black87
                                     : Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12,
                               ),
                             ),
-                            callback: isPremium ? onTapContent : onTapPay,
+                            callback: Constant.bypassPayment? onTapContent  : isPremium ? onTapContent : onTapPay,
                           ),
                         ],
                       ),

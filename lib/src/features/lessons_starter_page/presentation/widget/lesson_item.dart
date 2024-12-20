@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sysbit/gen/assets.gen.dart';
+import 'package:sysbit/src/core/constant/constant.dart';
 import 'package:sysbit/src/core/local_storage/cache/cache.dart';
 import 'package:sysbit/src/core/local_storage/object_box/progress_repository.dart';
 import 'package:sysbit/src/features/lessons_starter_page/presentation/widget/button.dart';
@@ -39,7 +40,7 @@ class LessonItemWidget extends StatelessWidget {
                 maxHeight: MediaQuery.of(context).size.height * 0.18),
             margin: const EdgeInsets.only(top: 5),
             child: InkWell(
-              onTap: isPremium
+              onTap:Constant.bypassPayment? onTaPContent : isPremium
                   ? onTaPContent
                   : index > 1
                       ? onTaPForPay
@@ -80,7 +81,7 @@ class LessonItemWidget extends StatelessWidget {
                             )),
                           ),
                           // Overlay Locked Lesson
-                          isPremium
+                         Constant.bypassPayment? SizedBox() : isPremium
                               ? const SizedBox()
                               : index > 1
                                   ? Container(
@@ -244,7 +245,7 @@ class LessonItemWidget extends StatelessWidget {
                             //Play Buttton
                             Flexible(
                               child: Button(
-                                callback: isPremium
+                                callback: Constant.bypassPayment? onTaPContent : isPremium
                                     ? onTaPContent
                                     : index > 1
                                         ? onTaPForPay

@@ -52,17 +52,34 @@ class Utils {
 
   static Route createRoute(Widget route) {
     return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>  route,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var begin = const Offset(1.0, 0.0);
+          var end = Offset.zero;
+          var curve = Curves.ease;
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          final offsetAnimation = animation.drive(tween);
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        });
+  }
+
+   static zoomOutPageRoute(Widget route) {
+    return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => route,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
-        const end = Offset.zero;
-        const curve = Curves.ease;
+        const begin = 0.0;
+        const end = 1.0;
+        const curve = Curves.easeInOut;
 
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var scaleAnimation = animation.drive(tween);
 
-        return SlideTransition(
-          position: animation.drive(tween),
+        return ScaleTransition(
+          scale: scaleAnimation,
           child: child,
         );
       },

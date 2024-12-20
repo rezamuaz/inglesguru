@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'lesson_bloc.dart';
+part of 'price_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$LessonEvent {
+mixin _$PriceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
@@ -51,23 +51,23 @@ mixin _$LessonEvent {
 }
 
 /// @nodoc
-abstract class $LessonEventCopyWith<$Res> {
-  factory $LessonEventCopyWith(
-          LessonEvent value, $Res Function(LessonEvent) then) =
-      _$LessonEventCopyWithImpl<$Res, LessonEvent>;
+abstract class $PriceEventCopyWith<$Res> {
+  factory $PriceEventCopyWith(
+          PriceEvent value, $Res Function(PriceEvent) then) =
+      _$PriceEventCopyWithImpl<$Res, PriceEvent>;
 }
 
 /// @nodoc
-class _$LessonEventCopyWithImpl<$Res, $Val extends LessonEvent>
-    implements $LessonEventCopyWith<$Res> {
-  _$LessonEventCopyWithImpl(this._value, this._then);
+class _$PriceEventCopyWithImpl<$Res, $Val extends PriceEvent>
+    implements $PriceEventCopyWith<$Res> {
+  _$PriceEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LessonEvent
+  /// Create a copy of PriceEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -80,13 +80,13 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$LessonEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$PriceEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LessonEvent
+  /// Create a copy of PriceEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -97,7 +97,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'LessonEvent.started()';
+    return 'PriceEvent.started()';
   }
 
   @override
@@ -166,17 +166,17 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements LessonEvent {
+abstract class _Started implements PriceEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-mixin _$LessonState {
+mixin _$PriceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(LessonMod data) loaded,
+    required TResult Function(List<Price> data) loaded,
     required TResult Function(NetworkExceptions error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -184,7 +184,7 @@ mixin _$LessonState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(LessonMod data)? loaded,
+    TResult? Function(List<Price> data)? loaded,
     TResult? Function(NetworkExceptions error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -192,7 +192,7 @@ mixin _$LessonState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(LessonMod data)? loaded,
+    TResult Function(List<Price> data)? loaded,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) =>
@@ -225,23 +225,23 @@ mixin _$LessonState {
 }
 
 /// @nodoc
-abstract class $LessonStateCopyWith<$Res> {
-  factory $LessonStateCopyWith(
-          LessonState value, $Res Function(LessonState) then) =
-      _$LessonStateCopyWithImpl<$Res, LessonState>;
+abstract class $PriceStateCopyWith<$Res> {
+  factory $PriceStateCopyWith(
+          PriceState value, $Res Function(PriceState) then) =
+      _$PriceStateCopyWithImpl<$Res, PriceState>;
 }
 
 /// @nodoc
-class _$LessonStateCopyWithImpl<$Res, $Val extends LessonState>
-    implements $LessonStateCopyWith<$Res> {
-  _$LessonStateCopyWithImpl(this._value, this._then);
+class _$PriceStateCopyWithImpl<$Res, $Val extends PriceState>
+    implements $PriceStateCopyWith<$Res> {
+  _$PriceStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -254,13 +254,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LessonStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$PriceStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -271,7 +271,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'LessonState.initial()';
+    return 'PriceState.initial()';
   }
 
   @override
@@ -288,7 +288,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(LessonMod data) loaded,
+    required TResult Function(List<Price> data) loaded,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return initial();
@@ -299,7 +299,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(LessonMod data)? loaded,
+    TResult? Function(List<Price> data)? loaded,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return initial?.call();
@@ -310,7 +310,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(LessonMod data)? loaded,
+    TResult Function(List<Price> data)? loaded,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -358,7 +358,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements LessonState {
+abstract class _Initial implements PriceState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -371,13 +371,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$LessonStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$PriceStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -388,7 +388,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'LessonState.loading()';
+    return 'PriceState.loading()';
   }
 
   @override
@@ -405,7 +405,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(LessonMod data) loaded,
+    required TResult Function(List<Price> data) loaded,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return loading();
@@ -416,7 +416,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(LessonMod data)? loaded,
+    TResult? Function(List<Price> data)? loaded,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return loading?.call();
@@ -427,7 +427,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(LessonMod data)? loaded,
+    TResult Function(List<Price> data)? loaded,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -475,7 +475,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements LessonState {
+abstract class _Loading implements PriceState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -485,20 +485,18 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({LessonMod data});
-
-  $LessonModCopyWith<$Res> get data;
+  $Res call({List<Price> data});
 }
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$LessonStateCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$PriceStateCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -507,34 +505,29 @@ class __$$LoadedImplCopyWithImpl<$Res>
   }) {
     return _then(_$LoadedImpl(
       null == data
-          ? _value.data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as LessonMod,
+              as List<Price>,
     ));
-  }
-
-  /// Create a copy of LessonState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LessonModCopyWith<$Res> get data {
-    return $LessonModCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.data);
+  const _$LoadedImpl(final List<Price> data) : _data = data;
 
+  final List<Price> _data;
   @override
-  final LessonMod data;
+  List<Price> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
 
   @override
   String toString() {
-    return 'LessonState.loaded(data: $data)';
+    return 'PriceState.loaded(data: $data)';
   }
 
   @override
@@ -542,13 +535,14 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -561,7 +555,7 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(LessonMod data) loaded,
+    required TResult Function(List<Price> data) loaded,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return loaded(data);
@@ -572,7 +566,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(LessonMod data)? loaded,
+    TResult? Function(List<Price> data)? loaded,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return loaded?.call(data);
@@ -583,7 +577,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(LessonMod data)? loaded,
+    TResult Function(List<Price> data)? loaded,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -631,12 +625,12 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements LessonState {
-  const factory _Loaded(final LessonMod data) = _$LoadedImpl;
+abstract class _Loaded implements PriceState {
+  const factory _Loaded(final List<Price> data) = _$LoadedImpl;
 
-  LessonMod get data;
+  List<Price> get data;
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
@@ -656,13 +650,13 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$LessonStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$PriceStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -677,7 +671,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -698,7 +692,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'LessonState.error(error: $error)';
+    return 'PriceState.error(error: $error)';
   }
 
   @override
@@ -712,7 +706,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -725,7 +719,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(LessonMod data) loaded,
+    required TResult Function(List<Price> data) loaded,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return error(this.error);
@@ -736,7 +730,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(LessonMod data)? loaded,
+    TResult? Function(List<Price> data)? loaded,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return error?.call(this.error);
@@ -747,7 +741,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(LessonMod data)? loaded,
+    TResult Function(List<Price> data)? loaded,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -795,12 +789,12 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements LessonState {
+abstract class _Error implements PriceState {
   const factory _Error(final NetworkExceptions error) = _$ErrorImpl;
 
   NetworkExceptions get error;
 
-  /// Create a copy of LessonState
+  /// Create a copy of PriceState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>

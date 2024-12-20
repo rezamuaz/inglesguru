@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sysbit/src/core/common/api_result.dart';
 import 'package:sysbit/src/core/common/network_exceptions.dart';
 import 'package:sysbit/src/core/constant/constant.dart';
+import 'package:sysbit/src/core/local_storage/key_storage/key_storage.dart';
 import 'package:sysbit/src/core/local_storage/shared_pref/shared_pref.dart';
 import 'package:sysbit/src/core/network/network.dart';
 import 'package:sysbit/src/features/conversation_page/data/model/lesson_data.dart';
@@ -27,7 +28,7 @@ class LessonDataBloc extends Bloc<LessonDataEvent, LessonDataState> {
                 await ConvRepoImpl().getRemote(lessonId);
             apiResult.when(success: (data, success, rc) async {
               SharedPrefs.instance.setString(
-                  "${Constant.jsonPrefixLessonConversation}_$lessonId",
+                  "${Keys.jsonPrefixLessonConversation}_$lessonId",
                   jsonEncode(data.toJson()));
               emit(LessonDataState.loaded(data));
             }, failure: (error, msg) async {
@@ -35,7 +36,7 @@ class LessonDataBloc extends Bloc<LessonDataEvent, LessonDataState> {
             });
           } else {
             var cache = SharedPrefs.instance.getString(
-                "${Constant.jsonPrefixLessonConversation}_$lessonId");
+                "${Keys.jsonPrefixLessonConversation}_$lessonId");
             var data = LessonData.fromJson(jsonDecode(cache ?? ""));
             return emit(LessonDataState.loaded(data));
           }

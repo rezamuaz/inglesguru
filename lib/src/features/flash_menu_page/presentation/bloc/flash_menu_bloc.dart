@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sysbit/src/app.dart';
 import 'package:sysbit/src/core/common/api_result.dart';
 import 'package:sysbit/src/core/constant/constant.dart';
+import 'package:sysbit/src/core/local_storage/key_storage/key_storage.dart';
 import 'package:sysbit/src/core/local_storage/object_box/progress_repository.dart';
 import 'package:sysbit/src/core/local_storage/shared_pref/shared_pref.dart';
 import 'package:sysbit/src/core/network/network.dart';
@@ -24,10 +25,10 @@ class FlashMenuBloc extends Bloc<FlashMenuEvent, FlashMenuState> {
            final hasConnected = await Network.connection.hasInternetAccess;
           if (hasConnected) {
              final ApiResult<LessonMod> apiResult =
-                await LessonRepoImpl().getLessonRemote();
+                await LessonRepoImpl().getStarterLessonRemote();
             return apiResult.when(success: (data, success, rc) async {
               SharedPrefs.instance
-                  .setString(Constant.jsonLesson, jsonEncode(data.toJson()));
+                  .setString(Keys.jsonStarterLesson, jsonEncode(data.toJson()));
                var allowed = await  _progressRepository.getAllProgressStream().first;
 
                if(allowed.isEmpty){
@@ -54,7 +55,7 @@ class FlashMenuBloc extends Bloc<FlashMenuEvent, FlashMenuState> {
             });
             //When Internet Connection Disable
           }else{
-             var dataStr = SharedPrefs.instance.getString(Constant.jsonLesson);
+             var dataStr = SharedPrefs.instance.getString(Keys.jsonStarterLesson);
             var data = LessonMod.fromJson(jsonDecode(dataStr ?? ""));
              var allowed = await  _progressRepository.getAllProgressStream().first;
                if(allowed.isEmpty){

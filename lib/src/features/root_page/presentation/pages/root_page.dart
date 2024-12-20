@@ -37,24 +37,24 @@ class _RootPageState extends State<RootPage> {
   void initState() {
     _controller = PersistentTabController(initialIndex: 0);
     // Initialize Firebase Messaging and request notification permissions
-    // requestPermission();
+    requestPermission();
 
-    // // Listen for FCM messages
-    // FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-    //   if (kDebugMode) {
-    //     print("Received a foreground message: ${message.notification?.title}");
-    //   }
-    //   _handleFCM(message);
-    //   await NotifApi.pushNotification(message);
-    // });
+    // Listen for FCM messages
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      if (kDebugMode) {
+        print("Received a foreground message: ${message.notification?.title}");
+      }
+      _handleFCM(message);
+      await NotifApi.pushNotification(message);
+    });
 
-    // // Handle notification when the app is in the background or terminated
-    // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-    //   if (kDebugMode) {
-    //     print("App opened from notification: ${message.notification?.title}");
-    //   }
-    //   await NotifApi.pushNotification(message);
-    // });
+    // Handle notification when the app is in the background or terminated
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+      if (kDebugMode) {
+        print("App opened from notification: ${message.notification?.title}");
+      }
+      await NotifApi.pushNotification(message);
+    });
 
     AdvancedInAppReview()
         .setMinDaysBeforeRemind(3)
@@ -154,8 +154,8 @@ class _RootPageState extends State<RootPage> {
   List<Widget> _buildScreens() {
     return [
       const HomePage(),
-      const ProgressPage(),
-      const PremiumPage(),
+      // const ProgressPage(),
+      // const PremiumPage(),
       const AccountPage()
     ];
   }
@@ -169,24 +169,24 @@ class _RootPageState extends State<RootPage> {
           activeColorPrimary: CupertinoColors.black,
           inactiveColorPrimary: CupertinoColors.systemGrey,
           inactiveIcon: const Icon(Icons.home_outlined)),
-      PersistentBottomNavBarItem(
-          icon: const Icon(Icons.bar_chart),
-          iconSize: 32,
-          title: ("Settings"),
-          activeColorPrimary: CupertinoColors.black,
-          inactiveColorPrimary: CupertinoColors.systemGrey,
-          inactiveIcon: const Icon(Icons.bar_chart_outlined)),
-      PersistentBottomNavBarItem(
-          icon: const Icon(Icons.diamond),
-          iconSize: 32,
-          title: ("Settings"),
-          activeColorPrimary: CupertinoColors.black,
-          inactiveColorPrimary: CupertinoColors.systemGrey,
-          inactiveIcon: const Icon(Icons.diamond_outlined)),
+      // PersistentBottomNavBarItem(
+      //     icon: const Icon(Icons.bar_chart),
+      //     iconSize: 32,
+      //     title: ("Progress"),
+      //     activeColorPrimary: CupertinoColors.black,
+      //     inactiveColorPrimary: CupertinoColors.systemGrey,
+      //     inactiveIcon: const Icon(Icons.bar_chart_outlined)),
+      // PersistentBottomNavBarItem(
+      //     icon: const Icon(Icons.diamond),
+      //     iconSize: 32,
+      //     title: ("Premium"),
+      //     activeColorPrimary: CupertinoColors.black,
+      //     inactiveColorPrimary: CupertinoColors.systemGrey,
+      //     inactiveIcon: const Icon(Icons.diamond_outlined)),
       PersistentBottomNavBarItem(
           icon: const Icon(Icons.person),
           iconSize: 32,
-          title: ("Settings"),
+          title: ("Account"),
           activeColorPrimary: CupertinoColors.black,
           inactiveColorPrimary: CupertinoColors.systemGrey,
           inactiveIcon: const Icon(Icons.person_outlined)),
